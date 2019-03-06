@@ -7,5 +7,5 @@ module.exports = (app) => {
   app.use('/auth', authRoutes);
   app.use('/device', deviceRoutes);
   app.use('/stats', statsRoutes);
-  app.use('/barrows', barrowsRoutes);
+  app.use('/barrow', barrowsRoutes);
 }

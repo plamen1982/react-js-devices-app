@@ -7,6 +7,7 @@ module.exports = (req, res, next) => {
   }
 
   // get the last part from a authorization header string like "bearer token-value"
+  debugger;
   const token = req.headers.authorization.split(' ')[1];
 
   //TO DO, change the hard-coded string for the password to be loaded from more secure place, -> decode the token using a secret key-phrase
@@ -26,6 +27,6 @@ module.exports = (req, res, next) => {
         req.user = user;
 
         return next();
-      })
-  })
+      });
+  });
 }

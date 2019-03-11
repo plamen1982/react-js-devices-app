@@ -11,9 +11,9 @@ function validateDeviceCreateForm(payload) {
 
   payload.price = parseFloat(payload.price);
 
-  if (!payload || typeof payload.title !== 'string' || payload.title.length < 3) {
+  if (!payload || typeof payload.model !== 'string' || payload.model.length < 1) {
     isFormValid = false;
-    errors.name = 'Device name must be at least 3 symbols.';
+    errors.name = 'Device model must be at least 1 symbols.';
   }
 
   if (!payload || typeof payload.description !== 'string' || payload.description.length < 10 || payload.description.length > 200) {
@@ -51,7 +51,7 @@ router.post('/create', authCheck, (req, res) => {
         success: false,
         message: validationResult.message,
         errors: validationResult.errors
-      })
+      });
     }
 
     Device
@@ -61,7 +61,7 @@ router.post('/create', authCheck, (req, res) => {
           success: true,
           message: 'Device added successfully.',
           data: createdDevice
-        })
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -84,9 +84,9 @@ router.post('/create', authCheck, (req, res) => {
 
 router.post('/edit/:id', authCheck, (req, res) => {
   if (req.user.roles.indexOf('Admin') > -1) {
-    const deviceId = req.params.id
-    const deviceObj = req.body
-    const validationResult = validateDeviceCreateForm(deviceObj)
+    const deviceId = req.params.id;
+    const deviceObj = req.body;
+    const validationResult = validateDeviceCreateForm(deviceObj);
     if (!validationResult.success) {
       return res.status(200).json({
         success: false,
@@ -98,12 +98,11 @@ router.post('/edit/:id', authCheck, (req, res) => {
     Device
       .findById(deviceId)
       .then(existingDevice => {
-        existingDevice.title = deviceObj.title
-        existingDevice.author = deviceObj.author
-        existingDevice.genres = deviceObj.genres
-        existingDevice.description = deviceObj.description
-        existingDevice.price = deviceObj.price
-        existingDevice.image = deviceObj.image
+        existingDevice.model = deviceObj.model;
+        existingDevice.typeDevice = deviceObj.typeDevice;
+        existingDevice.description = deviceObj.description;
+        existingDevice.price = deviceObj.price;
+        existingDevice.image = deviceObj.image;
 
         existingDevice
           .save()
@@ -116,9 +115,9 @@ router.post('/edit/:id', authCheck, (req, res) => {
           })
           .catch((err) => {
             console.log(err)
-            let message = 'Something went wrong :( Check the form for errors.'
+            let message = 'Something went wrong :( Check the form for errors.';
             if (err.code === 11000) {
-              message = 'Device with the given name already exists.'
+              message = 'Device with the given name already exists.';
             }
             return res.status(200).json({
               success: false,
@@ -127,12 +126,12 @@ router.post('/edit/:id', authCheck, (req, res) => {
           })
       })
       .catch((err) => {
-        console.log(err)
-        const message = 'Something went wrong :( Check the form for errors.'
+        console.log(err);
+        const message = 'Something went wrong :( Check the form for errors.';
         return res.status(200).json({
           success: false,
           message: message
-        })
+        });
       })
   } else {
     return res.status(200).json({
@@ -157,7 +156,7 @@ router.post('/review/:id', authCheck, (req, res) => {
   const username = req.user.username;
 
   if (review.length < 4) {
-    const message = 'Review must be at least 4 characters long.'
+    const message = 'Review must be at least 4 characters long.';
     return res.status(200).json({
       success: false,
       message: message
@@ -192,8 +191,8 @@ router.post('/review/:id', authCheck, (req, res) => {
           })
         })
         .catch((err) => {
-          console.log(err)
-          const message = 'Something went wrong :( Check the form for errors.'
+          console.log(err);
+          const message = 'Something went wrong :( Check the form for errors.';
           return res.status(200).json({
             success: false,
             message: message
@@ -201,8 +200,8 @@ router.post('/review/:id', authCheck, (req, res) => {
         })
     })
     .catch((err) => {
-      console.log(err)
-      const message = 'Something went wrong :( Check the form for errors.'
+      console.log(err);
+      const message = 'Something went wrong :( Check the form for errors.';
       return res.status(200).json({
         success: false,
         message: message
@@ -211,23 +210,23 @@ router.post('/review/:id', authCheck, (req, res) => {
 })
 
 router.post('/like/:id', authCheck, (req, res) => {
-  const id = req.params.id
-  const username = req.user.username
+  const id = req.params.id;
+  const username = req.user.username;
   Device
     .findById(id)
     .then(device => {
       if (!device) {
-        const message = 'Product not found.'
+        const message = 'Product not found.';
         return res.status(200).json({
           success: false,
           message: message
-        })
+        });
       }
       
       //TO DO double check this logic
       let likes = device.likes
       if (!likes.includes(username)) {
-        likes.push(username)
+        likes.push(username);
       }
       device.likes = likes;
       device

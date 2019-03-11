@@ -131,13 +131,13 @@ router.post('/signup', (req, res, next) => {
 
  //TO DO optimize the quality code
 router.post('/login', (req, res, next) => {
-  const validationResult = validateLoginForm(req.body)
+  const validationResult = validateLoginForm(req.body);
   if (!validationResult.success) {
     return res.status(200).json({
       success: false,
       message: validationResult.message,
       errors: validationResult.errors
-    })
+    });
   }
 
   return passport.authenticate('local-login', (err, token, userData) => {

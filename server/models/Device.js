@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const REQUIRED_VALIDATION_MESSAGE = '{PATH} is required'
+const REQUIRED_VALIDATION_MESSAGE = '{PATH} is required';
 
 let deviceSchema = new mongoose.Schema({
   model: {type: mongoose.Schema.Types.String, required: REQUIRED_VALIDATION_MESSAGE, unique: [true, 'Model already exists.']},
@@ -13,6 +13,6 @@ let deviceSchema = new mongoose.Schema({
   reviews: []
 })
 
-let Device = mongoose.model('Device', deviceSchema)
+let Device = mongoose.model('Device', deviceSchema);
 
-module.exports = Device
+module.exports = Device;

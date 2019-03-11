@@ -10,7 +10,7 @@ const borrowSchema = mongoose.Schema({
     type: mongoose.Schema.Types.String,
     enum: {
       values: ['Available', 'Not Available'],
-      message: 'Status is invalid, valid values include [Available, Not Available].'
+      message: 'Status is invalid, valid values include [Available, Not Available].',
     },
     default: 'Available',
     required: REQUIRED_VALIDATION_MESSAGE,

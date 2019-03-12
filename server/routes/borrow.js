@@ -8,7 +8,7 @@ const router = new express.Router();
 //route -> borrow/submit
 //TO DO double check the properties from the model
 router.post('/submit', authCheck, (req, res) => {
-  debugger
+
   const device = req.body;
   const borrowObj = {
     creator: req.user._id,

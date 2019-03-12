@@ -1,0 +1,54 @@
+<body>
+  <div id="root">
+    <div className="App">
+      <header>
+        <nav className="navbar-menu"><a href="/">Book Store</a><a href="/">Home</a><a href="/store">Store</a><a href="/orders">My
+            Orders</a><a href="/cart" className="active" aria-current="page">Cart</a><a href="javascript:void(0)">Logout</a></nav>
+      </header>
+      <main>
+        <div className="container">
+          <table id="cart" className="table table-hover table-condensed">
+            <thead>
+              <tr>
+                <th style="width: 50px;">Product</th>
+                <th style="width: 10px;">Price</th>
+                <th className="text-center" style="width: 22px;">Subtotal</th>
+                <th style="width: 10px;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-th="Product">
+                  <div className="row">
+                    <div className="col-sm-4 hidden-xs"><img src="https://images-na.ssl-images-amazon.com/images/I/51fonMmNpnL.jpg"
+                        alt="..." className="cart-image"></div>
+                    <div className="col-sm-8">
+                      <h4 className="nomargin">Harry Potter</h4>
+                      <p>fantasy, adventure, kids</p>
+                    </div>
+                  </div>
+                </td>
+                <td data-th="Price">$10.00</td>
+                <td data-th="Subtotal" className="text-center">$10.00</td>
+                <td className="actions" data-th=""><button className="btn btn-info btn-sm"><i className="fa fa-refresh"></i></button><button
+                    className="btn btn-danger btn-sm"><i className="fa fa-trash-o"></i></button></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td><a className="btn btn-warning" href="/store"><i className="fa fa-angle-left"></i> Continue Shopping</a></td>
+                <td colspan="2" className="hidden-xs"></td>
+                <td className="hidden-xs text-center"><strong>Total $10.00</strong></td>
+                <td><button className="btn btn-success btn-block">Checkout <i className="fa fa-angle-right"></i></button></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </main>
+      <div>
+        <footer id="footer" className="page-footer mt-4">© Book Library 2019</footer>
+      </div>
+    </div>
+  </div>
+
+</body>

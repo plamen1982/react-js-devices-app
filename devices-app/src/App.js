@@ -1,9 +1,12 @@
 import React, { Component, Fragment } from "react";
-import NavBar from "../src/components/NavBar/NavBar";
-import Home from "../src/components/Home/Home";
-
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import NavBar from "../src/components/NavBar/NavBar";
+import Home from "../src/components/Home/Home";
+import Login from "../src/components/Login/Login";
+
+
 
 class App extends Component {
     render() {
@@ -15,7 +18,7 @@ class App extends Component {
                       <Route path="/" component={Home} exact={true} />
                       <Route path="/all-devices" exact={true} />
                       <Route path="/my-devices" exact={true} />
-                      <Route path="/login" exact={true} />
+                      <Route path="/login" component={Login} exact={true} />
                       <Route path="/signup" exact={true} />
                   </Switch>
                 </Fragment>

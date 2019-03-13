@@ -1,0 +1,36 @@
+import React, { Component } from 'react';
+
+class Login extends Component {
+    render() {
+        return(
+            <div className="form-wrapper">
+            <h1>Login</h1>
+            <form>
+                <div className="form-group">
+                    <label for="email">E-mail</label
+                    ><input
+                        type="text"
+                        name="email"
+                        id="email"
+                        placeholder="Enter e-mail"
+                        value=""
+                    />
+                </div>
+                <div className="form-group">
+                    <label for="password">Password</label
+                    ><input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Enter password"
+                        value=""
+                    />
+                </div>
+                <input type="submit" value="Login" />
+            </form>
+            </div>
+        );
+    }
+}
+
+export default Login;

@@ -7,7 +7,7 @@ class Login extends Component {
             <h1>Login</h1>
             <form>
                 <div className="form-group">
-                    <label for="email">E-mail</label
+                    <label htmlFor="email">E-mail</label
                     ><input
                         type="text"
                         name="email"
@@ -17,7 +17,7 @@ class Login extends Component {
                     />
                 </div>
                 <div className="form-group">
-                    <label for="password">Password</label
+                    <label htmlFor="password">Password</label
                     ><input
                         type="password"
                         name="password"

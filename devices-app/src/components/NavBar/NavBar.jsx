@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class Navigation extends Component {
     render() {
         return (
             <header>
                 <nav className="navbar-menu">
-                    <Link to="/" className="active" aria-current="page">Home</Link>
-                    <Link to="/all-devices">All Devices</Link>
-                    <Link to="/my-devices">My Devices</Link>
-                    <Link to="/create-device">Create Device</Link>
-                    {/* <Link to="/logout">Logout</Link> */}
-                    <Link to="/login">Login</Link>
-                    <Link to="/signup">Signup</Link>
+                    <NavLink to="/" exact>Home</NavLink>
+                    <NavLink to="/all-devices" exact>All Devices</NavLink>
+                    <NavLink to="/my-devices" exact>My Devices</NavLink>
+                    <NavLink to="/create-device" exact>Create Device</NavLink>
+                    {/* <NavLink to="/logout">Logout</NavLink> */}
+                    <NavLink to="/login" exact>Login</NavLink>
+                    <NavLink to="/signup" exact>Signup</NavLink>
                 </nav>
             </header>
         );

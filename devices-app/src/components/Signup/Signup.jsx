@@ -7,7 +7,7 @@ class Signup extends Component {
                 <h1>Register</h1>
                 <form>
                     <div className="form-group">
-                        <label htmlFor="email">E-mail</label>
+                        <label htmlhtmlFor="email">E-mail</label>
                         <input
                             type="text"
                             name="email"
@@ -17,7 +17,7 @@ class Signup extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="username">Username</label>
+                        <label htmlhtmlFor="username">Username</label>
                         <input
                             type="text"
                             name="username"
@@ -27,7 +27,7 @@ class Signup extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
+                        <label htmlhtmlFor="password">Password</label>
                         <input
                             type="password"
                             name="password"
@@ -37,7 +37,7 @@ class Signup extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="confirmPassword">
+                        <label htmlhtmlFor="confirmPassword">
                             Confirm Password
                         </label>
                         <input

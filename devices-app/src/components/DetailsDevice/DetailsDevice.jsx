@@ -26,7 +26,7 @@ class DetailsDevice extends Component {
                 <div className="card-footer">
                     <small className="text-muted" />
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">
+                        <label htmlFor="exampleFormControlTextarea1">
                             Leave a review
                         </label>
                         <textarea

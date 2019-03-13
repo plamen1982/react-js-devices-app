@@ -4,29 +4,29 @@ class MyDevices extends Component {
     render() {
         return (
             <div className="container">
-                <h1 className="center">My Devices</h1>
+                <h1 className="text-center">My Devices</h1>
                 <div className="row" >
-                    <div className="col-md-4" id="customer-Devices">
+                    <div className="col-md-12" id="customer-Devices">
                         <div className="box">
                             <div className="table-responsive">
                                 <table className="table table-hover">
                                     <thead>
                                         <tr>
-                                            <td>Device</td>
-                                            <td>Date</td>
-                                            <td>Total</td>
-                                            <td>Status</td>
-                                            <td>View</td>
+                                            <th>Device</th>
+                                            <th>Date</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>View</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>#1</td>
+                                            <th>#1</th>
                                             <td>27.02.2019 г., 16:46:02 ч.</td>
                                             <td>$ 5.00</td>
                                             <p>
                                                 <span className="label label-info">
-                                                    Approved
+                                                    Available
                                                 </span>
                                             </p>
                                             <td>

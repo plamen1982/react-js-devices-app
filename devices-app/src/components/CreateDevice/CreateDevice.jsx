@@ -7,7 +7,7 @@ class CreateDevice extends Component {
                 <h1>Create New Device</h1>
                 <form>
                     <div className="form-group">
-                        <label for="model">model</label>
+                        <label htmlFor="model">model</label>
                         <input
                             type="text"
                             name="model"
@@ -17,7 +17,7 @@ class CreateDevice extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label for="description">Description</label>
+                        <label htmlFor="description">Description</label>
                         <input
                             type="text"
                             name="description"
@@ -27,7 +27,7 @@ class CreateDevice extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label for="image">Image URL</label>
+                        <label htmlFor="image">Image URL</label>
                         <input
                             type="text"
                             name="image"
@@ -37,7 +37,7 @@ class CreateDevice extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label for="creator">Creator</label>
+                        <label htmlFor="creator">Creator</label>
                         <input
                             type="text"
                             name="creator"
@@ -47,7 +47,7 @@ class CreateDevice extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label for="price">Price</label>
+                        <label htmlFor="price">Price</label>
                         <input
                             type="number"
                             name="price"

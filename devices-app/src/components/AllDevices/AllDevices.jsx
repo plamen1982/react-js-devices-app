@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class AllDevices extends Component {
     render() {
@@ -6,10 +7,10 @@ class AllDevices extends Component {
             <div className="container">
             <div className="row space-top">
               <div className="col-md-12">
-                <h1 className="jumbotron-heading text-center">Store</h1>
+                <h1 className="jumbotron-heading text-center">All Devices</h1>
                 <form className="form-inline md-form form-sm active-cyan active-cyan-2"><i className="fa fa-search" aria-hidden="true"></i>
                 <input
-                    className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search for the book you are looking for..."
+                    className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search for the Device you are looking for..."
                     aria-label="Search" name="query" value=""/></form>
               </div>
             </div>
@@ -23,7 +24,7 @@ class AllDevices extends Component {
                       author J. K. Rowling.</p>
                   </div>
                   <div className="card-footer"><small className="text-muted"></small><a type="button" className="btn btn-primary float-right btn-sm"
-                      href="/details/5c750355eba4543e800f7ce4">Details</a><button type="button" className="btn btn-warning float-right btn-sm">Order</button></div>
+                      href="/details/5c750355eba4543e800f7ce4">Details</a><button type="button" className="btn btn-warning float-right btn-sm">Borrow</button></div>
                 </div>
                 <div className="card col-4"><img className="card-img-top card-image" src="https://images-na.ssl-images-amazon.com/images/I/419M8dJUa-L._SY346_.jpg"
                     alt="What the Wind Knows "/>
@@ -32,8 +33,8 @@ class AllDevices extends Component {
                     <p className="card-text">Anne Gallagher grew up enchanted by her grandfather’s stories of Ireland.
                       Heartbroken at his death, she travels to his childhood home to spread his ashes.</p>
                   </div>
-                  <div className="card-footer"><small className="text-muted"></small><a type="button" className="btn btn-primary float-right btn-sm"
-                      href="/details/5c75009b6fa7f81b2459134e">Details</a><button type="button" className="btn btn-warning float-right btn-sm">Order</button></div>
+                  <div className="card-footer"><small className="text-muted"></small><Link className="btn btn-primary float-right btn-sm"
+                      to="/details/5c75009b6fa7f81b2459134e">Details</Link><button type="button" className="btn btn-warning float-right btn-sm">Borrow</button></div>
                 </div>
               </div>
             </div>

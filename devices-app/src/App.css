@@ -42,10 +42,6 @@ nav.navbar-menu a {
     border: 1px solid rgb(0, 175, 219);
 }
 
-nav.navbar-menu a:hover {
-    color: rgb(0, 175, 219);
-    background-color: white;
-}
 
 div.welcome-wrapper {
     width: 70%;
@@ -60,8 +56,6 @@ div.welcome-wrapper p{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    
-
 }
 
 div.welcome {
@@ -123,7 +117,6 @@ div.welcome p {
    
 }
 
-
 .form-wrapper input[type="submit"] {
     padding: 10px 20px;
     margin: 20px;   
@@ -158,6 +151,10 @@ th {
     width: 100% !important;
 }
 
+.active {
+    background-color: rgb(188, 50, 94);
+    color:rgb(0, 175, 219);
+} 
 
 @media screen and (max-width: 800px){
     nav.navbar-menu a {

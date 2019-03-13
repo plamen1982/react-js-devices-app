@@ -7,7 +7,7 @@ const Home = () => {
                 <div className="welcome">
                     <h1>Welcome to our device store, stranger !</h1>
                     <p>
-                        <Link to="/borrow">View your Devices</Link>
+                        <Link to="/my-devices">View your Devices</Link>
                     </p>
                 </div>
                 <h2>Top Rated</h2>

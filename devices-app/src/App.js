@@ -6,7 +6,7 @@ import NavBar from "../src/components/NavBar/NavBar";
 import Home from "../src/components/Home/Home";
 import Login from "../src/components/Login/Login";
 import Signup from "../src/components/Signup/Signup";
-
+import MyDevices from "../src/components/MyDevices/MyDevices";
 
 class App extends Component {
     render() {
@@ -17,7 +17,7 @@ class App extends Component {
                   <Switch>
                       <Route path="/" component={Home} exact={true} />
                       <Route path="/all-devices" exact={true} />
-                      <Route path="/my-devices" exact={true} />
+                      <Route path="/my-devices" component={MyDevices} exact={true} />
                       <Route path="/login" component={Login} exact={true} />
                       <Route path="/signup" component={Signup} exact={true} />
                   </Switch>

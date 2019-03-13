@@ -5,7 +5,7 @@ const Home = () => {
         <main>
             <div className="welcome-wrapper">
                 <div className="welcome">
-                    <h1>Welcome to our book store, tanya !</h1>
+                    <h1>Welcome to our device store, stranger !</h1>
                     <p>
                         <Link to="/borrow">View your Devices</Link>
                     </p>

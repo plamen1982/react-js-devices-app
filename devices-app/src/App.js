@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "../src/components/NavBar/NavBar";
 import Home from "../src/components/Home/Home";
 import Login from "../src/components/Login/Login";
-
+import Signup from "../src/components/Signup/Signup";
 
 
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
                       <Route path="/all-devices" exact={true} />
                       <Route path="/my-devices" exact={true} />
                       <Route path="/login" component={Login} exact={true} />
-                      <Route path="/signup" exact={true} />
+                      <Route path="/signup" component={Signup} exact={true} />
                   </Switch>
                 </Fragment>
             </Router>

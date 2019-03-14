@@ -7,12 +7,13 @@ class Login extends Component {
         email: "",
         password: "",
         error: "",
-        isLoggedIn: false,
+        isLoggedIn: !!window.localStorage.getItem("auth_token"),
     };
 
     static authService = new AuthenticationService();
 
     handleOnSumbit = (event) => {
+
         event.preventDefault();
         const { email, password } = this.state;
 

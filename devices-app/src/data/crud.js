@@ -23,9 +23,7 @@ const requester = method => {
                 "Accept": "application/json",
                 ...authHeader
             },
-            body: Object.keys(data).length 
-                ?JSON.stringify(data)
-                :undefined,
+            body: JSON.stringify(data),
             ...options,
         });
         return response.json();

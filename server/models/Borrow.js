@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 const REQUIRED_VALIDATION_MESSAGE = '{PATH} is required';
 
 const borrowSchema = mongoose.Schema({
-  creator: {type: mongoose.Schema.Types.ObjectId, required: REQUIRED_VALIDATION_MESSAGE},
-  borrowedDevices: [],
+  user: {type: mongoose.Schema.Types.ObjectId, required: REQUIRED_VALIDATION_MESSAGE}, //probably should be user
+  borrowedDevices: [], //products
   date: {type: mongoose.Schema.Types.Date, required: REQUIRED_VALIDATION_MESSAGE, default: Date.now},
   status: {
     type: mongoose.Schema.Types.String,
     enum: {
-      values: ['Available', 'Not Available'],
+      values: ['Available', 'Not Available'], //Pending, Approved, Delivered
       message: 'Status is invalid, valid values include [Available, Not Available].',
     },
     default: 'Available',
@@ -17,6 +17,6 @@ const borrowSchema = mongoose.Schema({
   }
 });
 
-let Borrow = mongoose.model('Borrow', borrowSchema);
+let Borrow = mongoose.model('Borrow', borrowSchema); //Order
 
 module.exports = Borrow;

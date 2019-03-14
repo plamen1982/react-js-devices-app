@@ -28,8 +28,6 @@ class AllDevices extends Component {
                       <DeviceCard />
                       <DeviceCard />
                       <DeviceCard />
-                      <DeviceCard />
-                      <DeviceCard />
                     </div>
                 </div>
                 <div className="row space-top">

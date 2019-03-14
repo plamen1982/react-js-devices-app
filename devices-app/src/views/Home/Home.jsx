@@ -18,9 +18,6 @@ const Home = () => {
                         <DeviceCard />
                         <DeviceCard />
                         <DeviceCard />
-                        <DeviceCard />
-                        <DeviceCard />
-                        <DeviceCard />
                     </div>
                 </div>
             </div>

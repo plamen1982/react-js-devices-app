@@ -25,7 +25,7 @@ class App extends Component {
                       <Route path="/my-devices" component={MyDevices} exact={true} />
                       <Route path="/all-devices" component={AllDevices} exact={true} />
                       <Route path="/create-device" component={CreateDevice} exact={true} />
-                      <Route path="/details/deviceId" component={DetailsDevice} exact={true} />
+                      <Route path="/details/:deviceId" component={DetailsDevice} exact={true} />
                       <Route component={NotFound} />
                   </Switch>
                 </Fragment>

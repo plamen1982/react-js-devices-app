@@ -15,7 +15,7 @@ class DetailsDevice extends Component {
                         Harry Potter and the Philosopher's Stone is a fantasy
                         novel written by British author J. K. Rowling.
                     </p>
-                    <p>Number of likes: <span class="badge badge-secondary">3</span></p>
+                    <p>Number of likes: <span className="badge badge-secondary">3</span></p>
                     <button
                         type="button"
                         className="btn btn-warning float-right btn-sm"
@@ -25,12 +25,12 @@ class DetailsDevice extends Component {
                 </div>
                 <div className="card-footer">
                     <small className="text-muted" />
-                    <div class="form-group">
+                    <div className="form-group">
                         <label htmlFor="exampleFormControlTextarea1">
                             Leave a review
                         </label>
                         <textarea
-                            class="form-control"
+                            className="form-control"
                             id="exampleFormControlTextarea1"
                             rows="3"
                         />

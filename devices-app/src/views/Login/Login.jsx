@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import AuthenticationService from "../../services/authentication-service";
 import { Redirect } from "react-router-dom";
+import { UserConsumer } from "../../context/user-context";
 
 class Login extends Component {
     state = {
         email: "",
         password: "",
         error: "",
-        isLoggedIn: !!window.localStorage.getItem("auth_token"),
     };
 
     static authService = new AuthenticationService();
 
     handleOnSumbit = (event) => {
-
         event.preventDefault();
         const { email, password } = this.state;
+        const { updateUser } = this.props;
 
         const requestLoginObject = {
             email,
@@ -34,11 +34,12 @@ class Login extends Component {
                     throw new Error(errors);
                 }
 
-                this.setState({
-                    isLoggedIn: true,
-                });
-
                 window.localStorage.setItem("auth_token", credentials.token);
+
+                updateUser({
+                    isLoggedIn: true,
+                    ...credentials.user,
+                });
             } catch (error) {
                 console.log(error);
             }
@@ -53,7 +54,8 @@ class Login extends Component {
     };
 
     render() {
-        const { email, password, isLoggedIn, error } = this.state;
+        const { email, password, error } = this.state;
+        const { isLoggedIn } = this.props;
 
         if(isLoggedIn) {
             return <Redirect to="/" />;
@@ -99,4 +101,20 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const LoginWithContext = (props) => {
+    return(
+        <UserConsumer>
+            {
+                ({ user, updateUser }) => (
+                    <Login 
+                        {...props}
+                        isLoggedIn={user.isLoggedIn}
+                        updateUser={updateUser}
+                    />
+                )
+            }
+        </UserConsumer>
+    );
+}
+
+export default LoginWithContext;

@@ -156,6 +156,11 @@ th {
     color:rgb(0, 175, 219);
 } 
 
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
 @media screen and (max-width: 800px){
     nav.navbar-menu a {
         width: 100%;       

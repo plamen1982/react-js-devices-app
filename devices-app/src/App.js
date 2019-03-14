@@ -10,6 +10,8 @@ import MyDevices from "../src/components/MyDevices/MyDevices";
 import AllDevices from "../src/components/AllDevices/AllDevices";
 import CreateDevice from "../src/components/CreateDevice/CreateDevice";
 import DetailsDevice from "../src/components/DetailsDevice/DetailsDevice";
+import NotFound from "../src/components/NotFound/NotFound";
+
 class App extends Component {
     render() {
         return (
@@ -24,6 +26,7 @@ class App extends Component {
                       <Route path="/all-devices" component={AllDevices} exact={true} />
                       <Route path="/create-device" component={CreateDevice} exact={true} />
                       <Route path="/details/deviceId" component={DetailsDevice} exact={true} />
+                      <Route component={NotFound} />
                   </Switch>
                 </Fragment>
             </Router>

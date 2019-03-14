@@ -15,7 +15,10 @@ import { UserProvider, defaultUserState } from "./context/user-context";
 
 class App extends Component {
     state = {
-        user: defaultUserState
+        user: {
+            ...defaultUserState,
+            updateUser: this.updateUser
+        }
     }
 
     updateUser = (user) => {
@@ -27,7 +30,7 @@ class App extends Component {
 
         return (
             <Router>
-                <UserProvider value={{ user, updateUser: this.updateUser }} >
+                <UserProvider value={{ user }} >
                     <NavBar />
                     <Switch>
                         <Route path="/" component={Home} exact={true} />

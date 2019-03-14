@@ -7,7 +7,10 @@ const Home = () => {
     return (
         <main>
             <div className="welcome-wrapper">
-                <MainMessage />
+                <MainMessage 
+                    message={"Welcome to our awsome store, stranger!"}>
+                    <Link to="/my-devices">View your Devices</Link>
+                </MainMessage>
                 <h2>Top Rated</h2>
                 <div className="row">
                     <div className="card-deck space-top">

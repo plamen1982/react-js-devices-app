@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
 class MainMessage extends Component {
+
     render() {
+        const { message, children } = this.props
         return(
             <div className="welcome">
-            <h1>Welcome to our device store, stranger !</h1>
+            <h1>{ message }</h1>
             <p>
-                <Link to="/my-devices">View your Devices</Link>
+                { children }
             </p>
         </div>
         );

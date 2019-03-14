@@ -17,7 +17,7 @@ class AllDevicesCards extends Component {
 
         if(!isLoading && !devices.length) {
             return(
-                <div>No devices here yet :(</div>
+                <h1 class="jumbotron">No devices here yet :(</h1>
             );
         }
 

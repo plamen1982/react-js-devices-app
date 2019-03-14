@@ -4,14 +4,21 @@ import Loading from "../Loading/Loading";
 
 class AllDevicesCards extends Component {
     state = {
-        devices: []
+        devices: [],
+        isLoading: false,
     };
 
     render() {
-        const { devices } = this.state;
+        const { devices, isLoading } = this.state;
 
-        if(!devices.length) {
+        if(isLoading) {
             return (<Loading />);
+        }
+
+        if(!isLoading && !devices.length) {
+            return(
+                <div>No devices here yet :(</div>
+            );
         }
 
         return (

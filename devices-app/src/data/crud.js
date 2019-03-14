@@ -1,6 +1,6 @@
 const request = (method) => {
-        return (url, data = {}, options = {}) => { 
-            fetch(url, {
+        return async (url, data = {}, options = {}) => { 
+            const response = fetch(url, {
             method,
             headers: {
                 "Content-Type": "application/json",
@@ -9,6 +9,7 @@ const request = (method) => {
             body: JSON.stringify(data),
             ...options,
         });
+        return response.json();
     }
 }
 

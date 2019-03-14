@@ -14,10 +14,14 @@ import DetailsDevice from "../src/components/DetailsDevice/DetailsDevice";
 import { UserProvider, defaultUserState } from "./context/user-context";
 
 class App extends Component {
-    state = {
-        user: {
-            ...defaultUserState,
-            updateUser: this.updateUser
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            user: {
+                ...defaultUserState,
+                updateUser: this.updateUser,
+            }
         }
     }
 
@@ -30,7 +34,7 @@ class App extends Component {
 
         return (
             <Router>
-                <UserProvider value={{ user }} >
+                <UserProvider value={user} >
                     <NavBar />
                     <Switch>
                         <Route path="/" component={Home} exact={true} />

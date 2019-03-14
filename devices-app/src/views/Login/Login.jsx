@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { UserConsumer } from "../../context/user-context";
 
 class Login extends Component {
+
     state = {
         email: "",
         password: "",
@@ -105,10 +106,10 @@ const LoginWithContext = (props) => {
     return(
         <UserConsumer>
             {
-                ({ user, updateUser }) => (
+                ({ isLoggedIn, updateUser }) => (
                     <Login 
                         {...props}
-                        isLoggedIn={user.isLoggedIn}
+                        isLoggedIn={isLoggedIn}
                         updateUser={updateUser}
                     />
                 )

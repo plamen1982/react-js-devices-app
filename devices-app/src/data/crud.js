@@ -5,15 +5,26 @@
  * @returns { Function }
  */
 const requester = method => {
+
+    const getAuthHeader = () => {
+        return (window.auth_token && window.auth_token.length) 
+                ? { "Authorization": `Bearer ${window.auth_token}` }
+                : {}
+    };
+
     return async (url, data, options) => {
-        debugger;
+        const authHeader = getAuthHeader();
+
         const response = await fetch(url, {
             method,
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                ...authHeader
             },
-            body: JSON.stringify(data),
+            body: Object.keys(data).length 
+                ?JSON.stringify(data)
+                :undefined,
             ...options,
         });
         return response.json();

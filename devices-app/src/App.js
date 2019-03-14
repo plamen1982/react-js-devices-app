@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "../src/views/Home/Home";
 import NotFound from "../src/views/NotFound/NotFound";
 import NavBar from "../src/components/NavBar/NavBar";
-import Login from "../src/components/Login/Login";
+import Login from "../src/views/Login/Login";
 import Signup from "../src/components/Signup/Signup";
 import MyDevices from "../src/components/MyDevices/MyDevices";
 import AllDevicesCards from "../src/components/AllDevicesCards/AllDevicesCards";

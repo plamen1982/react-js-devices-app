@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <main>
             <div className="welcome-wrapper">
-                <MainMessage message={"Welcome to our awsome store, stranger!"}>
+                <MainMessage message={"Welcome to our awsome devices store, stranger!"}>
                     <Link to="/my-devices">View your Devices</Link>
                 </MainMessage>
                 <h2>Top Rated</h2>

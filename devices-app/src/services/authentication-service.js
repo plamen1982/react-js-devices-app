@@ -18,16 +18,16 @@ class AuthenticationService {
  * login at http://localhost:5000/auth/login
  * @returns {Promise} with the data from the api at this url
  */
-    login(loginObject) {
-        return post(this.loginUrl, loginObject);
+    login(loginRequestObject) {
+        return post(this.loginUrl, loginRequestObject);
     }
 
 /**
  * signup at http://localhost:5000/auth/signup
  * @returns {Promise} with the data from the api at this url
  */
-signup() {
-    return post(this.signupUrl);
+signup(signupRequestObject) {
+    return post(this.signupUrl, signupRequestObject);
 }
 }
 

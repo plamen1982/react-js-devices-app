@@ -16,7 +16,7 @@ class Login extends Component {
         event.preventDefault();
         const { email, password } = this.state;
 
-        const requestObject = {
+        const requestLoginObject = {
             email,
             password,
         };
@@ -25,15 +25,19 @@ class Login extends Component {
             error: ""
         }, async () => {
             try {
-                debugger
-                const credentials = await Login.authService.login(requestObject);
-    
-                console.log(credentials);
-                if(credentials) {
-                    this.setState({
-                        isLoggedIn: true,
-                    });
+                const credentials = await Login.authService.login(requestLoginObject);
+                console.log(credentials)
+                if(!credentials.success) {
+                    const errors = Object.values(credentials.errors).join('');
+
+                    throw new Error(errors);
                 }
+
+                this.setState({
+                    isLoggedIn: true,
+                });
+
+                window.auth_token = credentials.token;
             } catch (error) {
                 console.log(error);
             }

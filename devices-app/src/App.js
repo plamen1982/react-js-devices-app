@@ -11,24 +11,28 @@ import MyDevices from "../src/components/MyDevices/MyDevices";
 import AllDevicesCards from "../src/components/AllDevicesCards/AllDevicesCards";
 import CreateDevice from "../src/components/CreateDevice/CreateDevice";
 import DetailsDevice from "../src/components/DetailsDevice/DetailsDevice";
+import { UserProvider, defaultUserState } from "./context/user-context";
 
 class App extends Component {
+    state = {
+        user: defaultUserState
+    }
     render() {
         return (
             <Router>
-                <Fragment>
-                  <NavBar />
-                  <Switch>
-                      <Route path="/" component={Home} exact={true} />
-                      <Route path="/login" component={Login} exact={true} />
-                      <Route path="/signup" component={Signup} exact={true} />
-                      <Route path="/my-devices" component={MyDevices} exact={true} />
-                      <Route path="/all-devices" component={AllDevicesCards} exact={true} />
-                      <Route path="/create-device" component={CreateDevice} exact={true} />
-                      <Route path="/details/:deviceId" component={DetailsDevice} exact={true} />
-                      <Route component={NotFound} />
-                  </Switch>
-                </Fragment>
+                <UserProvider>
+                    <NavBar />
+                    <Switch>
+                        <Route path="/" component={Home} exact={true} />
+                        <Route path="/login" component={Login} exact={true} />
+                        <Route path="/signup" component={Signup} exact={true} />
+                        <Route path="/my-devices" component={MyDevices} exact={true} />
+                        <Route path="/all-devices" component={AllDevicesCards} exact={true} />
+                        <Route path="/create-device" component={CreateDevice} exact={true} />
+                        <Route path="/details/:deviceId" component={DetailsDevice} exact={true} />
+                        <Route component={NotFound} />
+                    </Switch>
+                </UserProvider>
             </Router>
         );
     }

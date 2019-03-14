@@ -90,7 +90,6 @@ class AllDevicesCards extends Component {
     }
     async componentDidMount() {
         try {
-            debugger;
             const devices = await AllDevicesCards.service.getAllDevices();
             this.setState({ devices });
         } catch(error) {

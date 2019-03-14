@@ -18,8 +18,8 @@ class AuthenticationService {
  * login at http://localhost:5000/auth/login
  * @returns {Promise} with the data from the api at this url
  */
-    login() {
-        return post(this.loginUrl);
+    login(loginObject) {
+        return post(this.loginUrl, loginObject);
     }
 
 /**

@@ -1,37 +1,67 @@
 import React, { Component } from "react";
-import AuthenticationService from "../../services/devices-service";
+import AuthenticationService from "../../services/authentication-service";
+import { Redirect } from "react-router-dom";
 
 class Login extends Component {
     state = {
         email: "",
-        password: ""
+        password: "",
+        error: "",
+        isLoggedIn: false,
     };
 
     static authService = new AuthenticationService();
 
-    handleSumbit = async (event) => {
+    handleOnSumbit = (event) => {
         event.preventDefault();
+        const { email, password } = this.state;
 
-        try {
-            
-        } catch (error) {
-            console.log(error);
-        }
+        const requestObject = {
+            email,
+            password,
+        };
+
+        this.setState({
+            error: ""
+        }, async () => {
+            try {
+                debugger
+                const credentials = await Login.authService.login(requestObject);
+    
+                console.log(credentials);
+                if(credentials) {
+                    this.setState({
+                        isLoggedIn: true,
+                    });
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        });
     };
 
     handleOnChange = ({ target }) => {
+
         this.setState({
             [target.id]: target.value,
         });
     };
 
     render() {
-        const { email, password } = this.state;
+        const { email, password, isLoggedIn, error } = this.state;
 
+        if(isLoggedIn) {
+            return <Redirect to="/" />;
+        }
         return (
             <div className="form-wrapper">
+                {
+                    error.length
+                    ? <h4>Something went wrong: {error}</h4>
+                    : null
+                }
                 <h1>Login</h1>
-                <form>
+                <form onSubmit={this.handleOnSumbit}>
                     <div className="form-group">
                         <label htmlFor="email">E-mail</label>
                         <input
@@ -57,7 +87,6 @@ class Login extends Component {
                     <input
                         type="submit"
                         value="Login"
-                        onSubmit={this.handleOnChange}
                     />
                 </form>
             </div>

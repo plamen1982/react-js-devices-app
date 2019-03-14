@@ -6,6 +6,7 @@
  */
 const requester = method => {
     return async (url, data, options) => {
+        debugger;
         const response = await fetch(url, {
             method,
             headers: {

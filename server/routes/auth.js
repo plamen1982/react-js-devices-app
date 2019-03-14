@@ -22,7 +22,6 @@ function validateSignupForm (payload) {
   const errors = {};
   let isFormValid = true;
   let message = '';
-
   if (!payload || typeof payload.username !== 'string' || payload.username.trim().length < 4) {
     isFormValid = false;
     errors.username = 'Username must be at least 4 characters long';

@@ -1,8 +1,19 @@
 import React, { Component } from "react";
 import DeviceCard from "../DeviceCard/DeviceCard";
+import Loading from "../Loading/Loading";
 
-class AllDevices extends Component {
+class AllDevicesCards extends Component {
+    state = {
+        devices: []
+    };
+
     render() {
+        const { devices } = this.state;
+
+        if(!devices.length) {
+            return (<Loading />);
+        }
+
         return (
             <div className="container">
                 <div className="row space-top">
@@ -25,15 +36,17 @@ class AllDevices extends Component {
                 </div>
                 <div className="row">
                     <div className="card-deck space-top">
-                      <DeviceCard 
-                        imageUrl={"https://images-na.ssl-images-amazon.com/images/I/51fonMmNpnL.jpg"}
-                      />
-                      <DeviceCard 
-                        imageUrl={"https://images-na.ssl-images-amazon.com/images/I/51fonMmNpnL.jpg"}                      
-                      />
-                      <DeviceCard 
-                        imageUrl={"https://images-na.ssl-images-amazon.com/images/I/51fonMmNpnL.jpg"}                      
-                      />
+                        {
+                            devices.map(device => (
+                            <DeviceCard
+                                key={device.id}
+                                imageUrl={
+                                    "https://images-na.ssl-images-amazon.com/images/I/51fonMmNpnL.jpg"
+                                }
+                                {...device}
+                            />
+                        ))
+                    }
                     </div>
                 </div>
                 <div className="row space-top">
@@ -62,4 +75,4 @@ class AllDevices extends Component {
     }
 }
 
-export default AllDevices;
+export default AllDevicesCards;

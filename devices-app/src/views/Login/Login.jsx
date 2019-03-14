@@ -36,7 +36,10 @@ class Login extends Component {
                 }
 
                 window.localStorage.setItem("auth_token", credentials.token);
-                window.localStorage.setItem("user", JSON.stringify(credentials.user));
+                window.localStorage.setItem("user", JSON.stringify( {
+                    ...credentials.user,
+                    isLoggedIn: true,
+                }));
 
                 updateUser({
                     isLoggedIn: true,

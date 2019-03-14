@@ -17,10 +17,17 @@ class App extends Component {
     state = {
         user: defaultUserState
     }
+
+    updateUser = (user) => {
+        this.setState({ user })
+    }
+
     render() {
+        const { user } = this.state;
+
         return (
             <Router>
-                <UserProvider>
+                <UserProvider value={{ user, updateUser: this.updateUser }} >
                     <NavBar />
                     <Switch>
                         <Route path="/" component={Home} exact={true} />

@@ -37,7 +37,7 @@ class Login extends Component {
                     isLoggedIn: true,
                 });
 
-                window.auth_token = credentials.token;
+                window.localStorage.setItem("auth_token", credentials.token);
             } catch (error) {
                 console.log(error);
             }

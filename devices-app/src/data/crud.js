@@ -5,10 +5,11 @@
  * @returns { Function }
  */
 const requester = method => {
-
     const getAuthHeader = () => {
-        return (window.auth_token && window.auth_token.length) 
-                ? { "Authorization": `Bearer ${window.auth_token}` }
+        const token = window.localStorage.getItem("auth_token");
+
+        return (token && token.length) 
+                ? { "Authorization": `Bearer ${token}` }
                 : {}
     };
 

@@ -1,15 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+import MainMessage from "../../components/MainMessage/MainMessage";
+
 const Home = () => {
     return (
         <main>
             <div className="welcome-wrapper">
-                <div className="welcome">
-                    <h1>Welcome to our device store, stranger !</h1>
-                    <p>
-                        <Link to="/my-devices">View your Devices</Link>
-                    </p>
-                </div>
+                <MainMessage />
                 <h2>Top Rated</h2>
                 <div className="row">
                     <div className="card-deck space-top">

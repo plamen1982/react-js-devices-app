@@ -2,15 +2,15 @@ import React, { Component, Fragment } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import Home from "../src/views/Home/Home";
+import NotFound from "../src/views/NotFound/NotFound";
 import NavBar from "../src/components/NavBar/NavBar";
-import Home from "../src/components/Home/Home";
 import Login from "../src/components/Login/Login";
 import Signup from "../src/components/Signup/Signup";
 import MyDevices from "../src/components/MyDevices/MyDevices";
 import AllDevices from "../src/components/AllDevices/AllDevices";
 import CreateDevice from "../src/components/CreateDevice/CreateDevice";
 import DetailsDevice from "../src/components/DetailsDevice/DetailsDevice";
-import NotFound from "../src/components/NotFound/NotFound";
 
 class App extends Component {
     render() {

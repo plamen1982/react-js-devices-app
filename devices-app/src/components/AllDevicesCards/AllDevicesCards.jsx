@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import DeviceCard from "../DeviceCard/DeviceCard";
 import Loading from "../Loading/Loading";
+import DeviceService from "../../services/devices-service";
 
 class AllDevicesCards extends Component {
     state = {
@@ -8,16 +9,23 @@ class AllDevicesCards extends Component {
         isLoading: false,
     };
 
+    /**
+     * 
+     * @memberof DeviceService
+     * @static service
+     */
+    static service = new DeviceService();
+
     render() {
         const { devices, isLoading } = this.state;
 
         if(isLoading) {
-            return (<Loading />);
+            return <Loading />;
         }
 
         if(!isLoading && !devices.length) {
             return(
-                <h1 class="jumbotron">No devices here yet :(</h1>
+                <h1 className="jumbotron">No devices here yet :(</h1>
             );
         }
 
@@ -79,6 +87,15 @@ class AllDevicesCards extends Component {
                 </div>
             </div>
         );
+    }
+    async componentDidMount() {
+        try {
+            debugger;
+            const devices = await AllDevicesCards.service.getAllDevices();
+            this.setState({ devices });
+        } catch(error) {
+            alert(error)
+        }
     }
 }
 

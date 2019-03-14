@@ -13,14 +13,14 @@ const requester = method => {
                 "Accept": "application/json"
             },
             body: JSON.stringify(data),
-            ...options
+            ...options,
         });
         return response.json();
     };
 };
 
 /**
- * get data at url, options are optional
+ * get data at url
  * @param {String} url
  * @param {Object} options
  * @returns {Promise} with the data from the api at this url

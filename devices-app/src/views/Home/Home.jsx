@@ -8,16 +8,27 @@ const Home = () => {
     return (
         <main>
             <div className="welcome-wrapper">
-                <MainMessage 
-                    message={"Welcome to our awsome store, stranger!"}>
+                <MainMessage message={"Welcome to our awsome store, stranger!"}>
                     <Link to="/my-devices">View your Devices</Link>
                 </MainMessage>
                 <h2>Top Rated</h2>
                 <div className="row">
                     <div className="card-deck space-top">
-                        <DeviceCard />
-                        <DeviceCard />
-                        <DeviceCard />
+                        <DeviceCard
+                            imageUrl={
+                                "https://images-na.ssl-images-amazon.com/images/I/51fonMmNpnL.jpg"
+                            }
+                        />
+                        <DeviceCard
+                            imageUrl={
+                                "https://images-na.ssl-images-amazon.com/images/I/51fonMmNpnL.jpg"
+                            }
+                        />
+                        <DeviceCard
+                            imageUrl={
+                                "https://images-na.ssl-images-amazon.com/images/I/51fonMmNpnL.jpg"
+                            }
+                        />
                     </div>
                 </div>
             </div>

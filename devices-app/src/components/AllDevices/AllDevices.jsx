@@ -25,9 +25,15 @@ class AllDevices extends Component {
                 </div>
                 <div className="row">
                     <div className="card-deck space-top">
-                      <DeviceCard />
-                      <DeviceCard />
-                      <DeviceCard />
+                      <DeviceCard 
+                        imageUrl={"https://images-na.ssl-images-amazon.com/images/I/51fonMmNpnL.jpg"}
+                      />
+                      <DeviceCard 
+                        imageUrl={"https://images-na.ssl-images-amazon.com/images/I/51fonMmNpnL.jpg"}                      
+                      />
+                      <DeviceCard 
+                        imageUrl={"https://images-na.ssl-images-amazon.com/images/I/51fonMmNpnL.jpg"}                      
+                      />
                     </div>
                 </div>
                 <div className="row space-top">

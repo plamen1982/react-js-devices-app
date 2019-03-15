@@ -43,6 +43,7 @@ class Login extends Component {
 
                 updateUser({
                     isLoggedIn: true,
+                    updateUser,
                     ...credentials.user,
                 });
             } catch (error) {

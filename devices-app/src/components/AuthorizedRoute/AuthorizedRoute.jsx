@@ -9,7 +9,6 @@ class AuthorizedRoute extends Component {
         if(!isLoggedIn) {
             return <Redirect to="/login" />;
         }
-
         return <Route {...otherProps} />;
     }
 }
@@ -20,6 +19,7 @@ const AuthorizedRouteWithContext = (props) => {
             {
                 ({ isLoggedIn }) => (
                     <AuthorizedRoute 
+                        {...props}
                         isLoggedIn={isLoggedIn}
                     />
                 )

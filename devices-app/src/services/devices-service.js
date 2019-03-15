@@ -11,7 +11,7 @@ class DevicesService {
 
         this.baseUrl = 'http://localhost:5000/device';
         this.allDevicesUrl = `${this.baseUrl}/all`;
-        this.createDeviceUrl = `${this.baseUrl}/device/create`
+        this.createDeviceUrl = `${this.baseUrl}/create`
     }
 /**
  * create device at url http://localhost:5000/device/create

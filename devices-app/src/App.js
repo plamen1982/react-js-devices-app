@@ -7,6 +7,7 @@ import NotFound from "../src/views/NotFound/NotFound";
 import Login from "../src/views/Login/Login";
 import Logout from "../src/views/Logout/Logout";
 import CreateDevice from "../src/views/CreateDevice/CreateDevice";
+import EditDevice from "../src/views/EditDevice/EditDevice";
 import DetailsDevice from "../src/views/DetailsDevice/DetailsDevice";
 import MyDevices from "../src/views/MyDevices/MyDevices";
 import Signup from "../src/views/Signup/Signup";
@@ -51,8 +52,9 @@ class App extends Component {
                         <Route path="/my-devices" component={MyDevices} exact={true} />
                         <Route path="/all-devices" component={AllDevicesCards} exact={true} />
                         <AuthorizedRoute path="/create-device" component={CreateDevice} exact={true} allowedRoles={'admin'}/>
+                        <AuthorizedRoute path="/edit/:deviceId" component={EditDevice} exact={true} allowedRoles={'admin'}/>
                         <Route path="/logout" component={Logout} exact={true}/>
-                        <Route path="/details/:deviceId" component={DetailsDevice} exact={true} />
+                        <Route path="/review/:deviceId" component={DetailsDevice} exact={true} />
                         <Route component={NotFound} />
                     </Switch>
                 </UserProvider>

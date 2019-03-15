@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 
 class DeviceCard extends Component {
     render() {
-        const { imageUrl, model, description, id } = this.props;
+        const { image, model, description, deviceId } = this.props;
+        debugger;
         return (
             <div className="card col-4">
                 <img
                     className="card-img-top card-image"
-                    src={imageUrl}
+                    src={image}
                     alt={model}
                 />
                 <div className="card-body">
@@ -23,9 +24,15 @@ class DeviceCard extends Component {
                     <small className="text-muted" />
                     <Link
                         className="btn btn-primary float-right btn-sm"
-                        to={`/details/${id}`}
+                        to={`/review/${deviceId}`}
                     >
-                        Details
+                        Review
+                    </Link>
+                    <Link
+                        className="btn btn-danger float-right btn-sm"
+                        to={`/edit/${deviceId}`}
+                    >
+                        Edit
                     </Link>
                     <button
                         type="button"

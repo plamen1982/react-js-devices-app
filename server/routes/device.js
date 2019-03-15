@@ -83,6 +83,7 @@ router.post('/create', authCheck, (req, res) => {
 })
 
 router.post('/edit/:id', authCheck, (req, res) => {
+  debugger;
   if (req.user.roles.indexOf('Admin') > -1) {
     const deviceId = req.params.id;
     const deviceObj = req.body;
@@ -99,6 +100,7 @@ router.post('/edit/:id', authCheck, (req, res) => {
       .findById(deviceId)
       .then(existingDevice => {
         existingDevice.model = deviceObj.model;
+        existingDevice.creator = deviceObj.creator;
         existingDevice.typeDevice = deviceObj.typeDevice;
         existingDevice.description = deviceObj.description;
         existingDevice.price = deviceObj.price;

@@ -54,10 +54,9 @@ class AllDevicesCards extends Component {
                         {
                             devices.map(device => (
                             <DeviceCard
-                                key={device.id}
-                                imageUrl={
-                                    "https://images-na.ssl-images-amazon.com/images/I/51fonMmNpnL.jpg"
-                                }
+                                key={device._id}
+                                image={device.image}
+                                deviceId={device._id}
                                 {...device}
                             />
                         ))

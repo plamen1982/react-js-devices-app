@@ -47,7 +47,9 @@ class Login extends Component {
                     ...credentials.user,
                 });
             } catch (error) {
-                console.log(error);
+               this.setState({
+                   error
+               })
             }
         });
     };

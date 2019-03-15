@@ -1,4 +1,4 @@
-import { get } from "../data/crud";
+import { get, post } from "../data/crud";
 
 /** Class used as service for fetching data */
 class DevicesService {
@@ -11,10 +11,14 @@ class DevicesService {
 
         this.baseUrl = 'http://localhost:5000/device';
         this.allDevicesUrl = `${this.baseUrl}/all`;
+        this.createDeviceUrl = `${this.baseUrl}/device/create`
     }
-
-    getTopRatedDevices() {
-
+/**
+ * create device at url http://localhost:5000/device/create
+ * @returns {Promise} with the data from the api at this url
+ */
+    createDevice(createDeviceObject) {
+        return post(this.createDeviceUrl, createDeviceObject)
     }
 /**
  * get all devices from url http://localhost:5000/device/all

@@ -5,12 +5,12 @@ import { UserConsumer } from "../../context/user-context";
 class AuthorizedRoute extends Component {
     render() {
 
-        const { allowedRoles = [], roles, ...otherProps } = this.props;
+        const { allowedRoles, roles, ...otherProps } = this.props;
         let { isLoggedIn } = this.props;
-        const roleIsAllowed = allowedRoles.length || (
+        const roleIsAllowed = (
                 roles
                     .map(role => role.toLowerCase())
-                    .some(role => allowedRoles.includes(role))
+                    .some(role => role === allowedRoles)
             );
 
         if(!isLoggedIn || !roleIsAllowed) {

@@ -5,7 +5,7 @@ import { UserConsumer, defaultUserState } from "../../context/user-context";
 class Logout extends Component {
     constructor(props) {
         super(props);
-        debugger;
+
         window.localStorage.setItem('user', '');
         window.localStorage.setItem('auth_token', '');
         props.updateUser(defaultUserState);

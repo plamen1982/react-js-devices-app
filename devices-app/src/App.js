@@ -50,7 +50,7 @@ class App extends Component {
                         <Route path="/signup" component={Signup} exact={true} />
                         <Route path="/my-devices" component={MyDevices} exact={true} />
                         <Route path="/all-devices" component={AllDevicesCards} exact={true} />
-                        <AuthorizedRoute path="/create-device" component={CreateDevice} exact={true} allowedRoles={['admin']}/>
+                        <AuthorizedRoute path="/create-device" component={CreateDevice} exact={true} allowedRoles={'admin'}/>
                         <Route path="/logout" component={Logout} exact={true}/>
                         <Route path="/details/:deviceId" component={DetailsDevice} exact={true} />
                         <Route component={NotFound} />

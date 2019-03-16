@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 class DeviceCard extends Component {
     render() {
         const { image, model, description, deviceId } = this.props;
-        debugger;
         return (
             <div className="card col-4">
                 <img

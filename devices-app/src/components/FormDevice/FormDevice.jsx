@@ -1,61 +1,13 @@
 import React, { Component } from "react";
-import DevicesService from "../../services/devices-service";
 
-class EditDevice extends Component {
-    state = {
-        model: "",
-        description: "",
-        image: "",
-        creator: "",
-        price: "",
-    }
+class FormDevice extends Component {
 
-    static devicesService = new DevicesService();
-
-    handleOnSumbit = (event) => {
-        event.preventDefault();
-        const { model, description, image, creator, price } = this.state;
-        const { match } = this.props;
-        const { params: { deviceId } } = match;
-
-        const requestEditDeviceObject = {
-            id: deviceId,
-            model,
-            description,
-            image,
-            creator,
-            price,
-        };
-
-        this.setState({
-            error: ""
-        }, async () => {
-            try {
-                const editedDevice = await EditDevice.devicesService.editDevice(requestEditDeviceObject);
-                console.log(editedDevice);
-                if(!editedDevice.success) {
-                    const errors = Object.values(editedDevice.errors).join('');
-
-                    throw new Error(errors);
-                }
-                } catch(error) {
-                    console.log(error);
-                }
-        })
-    };
-
-    handleOnChange = ({ target }) => {
-
-        this.setState({
-            [target.id]: target.value,
-        });
-    };
-    //TODO add the existing maybe with the Context API
     render() {
         const {model, description, image, creator, price} = this.state;
+        const { titleForm } = this.props;
         return (
             <div className="form-wrapper">
-                <h1>Edit Device</h1>
+                <h1>{titleForm}</h1>
                 <form onSubmit={this.handleOnSumbit}>
                     <div className="form-group">
                         <label htmlFor="model">model</label>
@@ -118,4 +70,4 @@ class EditDevice extends Component {
     }
 }
 
-export default EditDevice;
+export default FormDevice;

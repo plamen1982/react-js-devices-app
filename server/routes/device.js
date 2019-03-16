@@ -83,7 +83,7 @@ router.post('/create', authCheck, (req, res) => {
 })
 
 router.post('/edit/:id', authCheck, (req, res) => {
-  debugger;
+
   if (req.user.roles.indexOf('Admin') > -1) {
     const deviceId = req.params.id;
     const deviceObj = req.body;

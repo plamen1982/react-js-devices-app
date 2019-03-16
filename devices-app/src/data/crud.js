@@ -1,8 +1,8 @@
 /**
  * Create a customable closure for fetching data based on the CRUD methods. 
- * @example const get = requester("get");
  * @param {String} method
  * @returns { Function }
+ * @example const get = requester("get");
  */
 const requester = method => {
     const getAuthHeader = () => {

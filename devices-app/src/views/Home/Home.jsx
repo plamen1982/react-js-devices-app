@@ -10,13 +10,13 @@ const Home = (props) => {
         <main>
             <div className="welcome-wrapper">
                 {
-                isLoggedIn 
-                ? <MainMessage message={`Welcome to our awsome devices store, ${username}!`}>
-                    <Link to="/all-devices">View all Devices</Link>
-                 </MainMessage>
-                : <MainMessage message={`Welcome to our awsome devices store, stranger!`}>
-                        <Link to="/all-devices">View all Devices</Link>
-                  </MainMessage>
+                    isLoggedIn 
+                        ? <MainMessage message={`Welcome to our awesome devices store, ${username}!`}>
+                            <Link to="/all-devices">View all Devices</Link>
+                        </MainMessage>
+                        : <MainMessage message={`Welcome to our awesome devices store, stranger!`}>
+                                <Link to="/all-devices">View all Devices</Link>
+                        </MainMessage>
                 }
 
             </div>

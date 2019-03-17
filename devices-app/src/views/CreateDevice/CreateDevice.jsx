@@ -1,6 +1,6 @@
 import React from "react";
 import FormDevice from "../../components/FormDevice/FormDevice";
-import withDataFromDeviceService from "../../hocs/with-data-from-device-service";
+import { withDataFromDeviceService } from "../../hocs/with-data-from-device-service";
 
 
 const CreateDevice = (props) => {

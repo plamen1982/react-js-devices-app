@@ -17,6 +17,9 @@ import AllDevicesCards from "../src/components/AllDevicesCards/AllDevicesCards";
 import AuthorizedRoute from "../src/components/AuthorizedRoute/AuthorizedRoute";
 
 import { UserProvider, defaultUserState } from "./context/user-context";
+import { DeviceProvider } from "./context/device-context";
+
+import DevicesService from "./services/devices-service";
 
 class App extends Component {
     constructor(props) {
@@ -30,36 +33,51 @@ class App extends Component {
                 ...defaultUserState,
                 ...parsedUser,
                 updateUser: this.updateUser,
-            }
+            },
+            devices: []
         }
     }
+
+    static devicesService = new DevicesService();
 
     updateUser = (user) => {
         this.setState({ user });
     }
 
     render() {
-        const { user } = this.state;
+        const { user, devices } = this.state;
 
         return (
             <Router>
-                <UserProvider value={user}>
-                    <NavBar />
-                    <Switch>
-                        <Route path="/" component={Home} exact={true} />
-                        <Route path="/login" component={Login} exact={true} />
-                        <Route path="/signup" component={Signup} exact={true} />
-                        <Route path="/my-devices" component={MyDevices} exact={true} />
-                        <Route path="/all-devices" component={AllDevicesCards} exact={true} />
-                        <AuthorizedRoute path="/create-device" component={CreateDevice} exact={true} allowedRoles={'admin'}/>
-                        <AuthorizedRoute path="/edit/:deviceId" component={EditDevice} exact={true} allowedRoles={'admin'}/>
-                        <Route path="/logout" component={Logout} exact={true}/>
-                        <Route path="/review/:deviceId" component={DetailsDevice} exact={true} />
-                        <Route component={NotFound} />
-                    </Switch>
-                </UserProvider>
+                <DeviceProvider value={devices}>
+                    <UserProvider value={user}>
+                        <NavBar />
+                        <Switch>
+                            <Route path="/" component={Home} exact={true} />
+                            <Route path="/login" component={Login} exact={true} />
+                            <Route path="/signup" component={Signup} exact={true} />
+                            <Route path="/my-devices" component={MyDevices} exact={true} />
+                            <Route path="/all-devices" component={AllDevicesCards} exact={true} />
+                            <AuthorizedRoute path="/create-device" component={CreateDevice} exact={true} allowedRoles={'admin'}/>
+                            <AuthorizedRoute path="/edit/:deviceId" component={EditDevice} exact={true} allowedRoles={'admin'}/>
+                            <Route path="/logout" component={Logout} exact={true}/>
+                            <Route path="/review/:deviceId" component={DetailsDevice} exact={true} />
+                            <Route component={NotFound} />
+                        </Switch>
+                    </UserProvider>
+                </DeviceProvider>
             </Router>
         );
+    }
+
+    async componentDidMount() {
+        try {
+            const devices = await App.devicesService.getAllDevices();
+            debugger;
+            this.setState({ devices });
+        } catch(error) {
+            this.setState({ error });
+        }
     }
 }
 

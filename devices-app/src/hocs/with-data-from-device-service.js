@@ -2,11 +2,10 @@ import React from 'react';
 import DevicesService from "../services/devices-service";
 
 const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
-    return class withCustomForm extends React.Component {
+    return class withDataFormDevice extends React.Component {
         constructor(props) {
             super(props)
             this.state = {
-                deviceId: "",
                 model: "", 
                 description: "", 
                 image: "", 
@@ -24,8 +23,8 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
             ))
         }
 
-        handleSubmit = (id) => {
-            withCustomForm.devicesService[serviceMethod](this.state, id);
+        handleSubmit = async (id) => {
+           await withDataFormDevice.devicesService[serviceMethod](this.state, id);
         } 
             render() {
                 return(
@@ -40,7 +39,7 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
     }
 }
 
-export default withDataFromDeviceService;
+export { withDataFromDeviceService };
 
 
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 class DeviceCard extends Component {
     render() {
-        const { image, model, description, deviceId } = this.props;
+        const { image, model, description, deviceId, price } = this.props;
         return (
             <div className="card col-6">
                 <img
@@ -18,7 +18,11 @@ class DeviceCard extends Component {
                     <p className="card-text">
                         {description}
                     </p>
+                    <h5 className="card-title">
+                        {price}
+                    </h5>
                 </div>
+                
                 <div className="card-footer">
                     <small className="text-muted" />
                     <Link
@@ -33,12 +37,12 @@ class DeviceCard extends Component {
                     >
                         Edit
                     </Link>
-                    <button
+                    {/* <button
                         type="button"
                         className="btn btn-warning float-right btn-sm"
                     >
                         Borrow
-                    </button>
+                    </button> */}
                 </div>
             </div>
         );

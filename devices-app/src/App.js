@@ -52,7 +52,6 @@ class App extends Component {
         this.setState({ devices });
     }
     render() {
-        debugger;
         const { user, devices } = this.state;
 
         return (
@@ -80,7 +79,6 @@ class App extends Component {
 
     async componentDidMount() {
         try {
-            debugger;
             const devices = await App.devicesService.getAllDevices();
             this.updateDevices(devices);
         } catch(error) {

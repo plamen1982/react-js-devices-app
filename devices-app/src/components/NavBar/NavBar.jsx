@@ -14,9 +14,9 @@ class NavBar extends Component {
                     <NavLink to="/all-devices" exact>
                         All Devices
                     </NavLink>
-                    <NavLink to="/my-devices" exact>
+                    {/* <NavLink to="/my-devices" exact>
                         My Devices
-                    </NavLink>
+                    </NavLink> */}
                     <NavLink to="/create-device" exact>
                         Create Device
                     </NavLink>
@@ -35,7 +35,7 @@ class NavBar extends Component {
                     )}
                     {
                         isLoggedIn
-                            ? <span>Hello, {username}</span>
+                            ? <span className="text-danger">Hello, {username} !</span>
                             : null
                     }
                 </nav>

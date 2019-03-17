@@ -11,13 +11,14 @@ import EditDevice from "../src/views/EditDevice/EditDevice";
 import DetailsDevice from "../src/views/DetailsDevice/DetailsDevice";
 import MyDevices from "../src/views/MyDevices/MyDevices";
 import Signup from "../src/views/Signup/Signup";
+import AllDevices from "../src/views/AllDevices/AllDevices";
 
 import NavBar from "../src/components/NavBar/NavBar";
 import AllDevicesCards from "../src/components/AllDevicesCards/AllDevicesCards";
 import AuthorizedRoute from "../src/components/AuthorizedRoute/AuthorizedRoute";
 
 import { UserProvider, defaultUserState } from "./context/user-context";
-import { DeviceProvider } from "./context/device-context";
+import { DeviceProvider, defaultDeviceState } from "./context/device-context";
 
 import DevicesService from "./services/devices-service";
 
@@ -34,7 +35,10 @@ class App extends Component {
                 ...parsedUser,
                 updateUser: this.updateUser,
             },
-            devices: []
+            devices: {
+                ...defaultDeviceState,
+                updateDevices: this.updateDevices,
+            }
         }
     }
 
@@ -44,7 +48,11 @@ class App extends Component {
         this.setState({ user });
     }
 
+    updateDevices = (devices) => {
+        this.setState({ devices });
+    }
     render() {
+        debugger;
         const { user, devices } = this.state;
 
         return (
@@ -57,7 +65,7 @@ class App extends Component {
                             <Route path="/login" component={Login} exact={true} />
                             <Route path="/signup" component={Signup} exact={true} />
                             <Route path="/my-devices" component={MyDevices} exact={true} />
-                            <Route path="/all-devices" component={AllDevicesCards} exact={true} />
+                            <Route path="/all-devices" component={AllDevices} exact={true} />
                             <AuthorizedRoute path="/create-device" component={CreateDevice} exact={true} allowedRoles={'admin'}/>
                             <AuthorizedRoute path="/edit/:deviceId" component={EditDevice} exact={true} allowedRoles={'admin'}/>
                             <Route path="/logout" component={Logout} exact={true}/>
@@ -72,9 +80,9 @@ class App extends Component {
 
     async componentDidMount() {
         try {
-            const devices = await App.devicesService.getAllDevices();
             debugger;
-            this.setState({ devices });
+            const devices = await App.devicesService.getAllDevices();
+            this.updateDevices(devices);
         } catch(error) {
             this.setState({ error });
         }

@@ -1,7 +1,9 @@
 import { createContext } from "react";
 
 const defaultDeviceState = { 
-    devices: []
+    devices: [],
+    isLoading: false,
+    updateDevices() {}
 };
 
 const { Consumer: DeviceConsumer, Provider: DeviceProvider } = createContext(defaultDeviceState);

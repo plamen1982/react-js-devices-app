@@ -3,13 +3,18 @@ import DevicesService from "../services/devices-service";
 
 const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
     return class withCustomForm extends React.Component {
-        state = {
-            model: "", 
-            description: "", 
-            image: "", 
-            creator: "", 
-            price: "" 
+        constructor(props) {
+            super(props)
+            this.state = {
+                deviceId: "",
+                model: "", 
+                description: "", 
+                image: "", 
+                creator: "", 
+                price: "" 
+            }
         }
+
         
         static devicesService = new DevicesService();
 
@@ -19,8 +24,8 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
             ))
         }
 
-        handleSubmit = () => {
-            withCustomForm.devicesService[serviceMethod](this.state);
+        handleSubmit = (id) => {
+            withCustomForm.devicesService[serviceMethod](this.state, id);
         } 
             render() {
                 return(

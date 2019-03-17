@@ -1,5 +1,5 @@
 import React from "react";
-import FormDevice, {} from "../../components/FormDevice/FormDevice";
+import FormDevice from "../../components/FormDevice/FormDevice";
 import withDataFromDeviceService from "../../hocs/with-data-from-device-service";
 
 

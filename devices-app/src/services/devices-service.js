@@ -26,8 +26,7 @@ class DevicesService {
  * edit device at url http://localhost:5000/device/edit/:id
  * @returns {Promise} with the data from the api at this url
  */
-editDevice(editDeviceObject) {
-    const { id } = editDeviceObject;
+editDevice(editDeviceObject, id) {
     return post(`${this.editDeviceUrl}/${id}`, editDeviceObject);
 }
 

@@ -38,14 +38,6 @@ class AllDevicesCards extends Component {
                         </h1>
                         <form className="form-inline md-form form-sm active-cyan active-cyan-2">
                             <i className="fa fa-search" aria-hidden="true" />
-                            <input
-                                className="form-control form-control-sm ml-3 w-75"
-                                type="text"
-                                placeholder="Search for the Device you are looking for..."
-                                aria-label="Search"
-                                name="query"
-                                value=""
-                            />
                         </form>
                     </div>
                 </div>
@@ -61,27 +53,6 @@ class AllDevicesCards extends Component {
                             />
                         ))
                     }
-                    </div>
-                </div>
-                <div className="row space-top">
-                    <div className="col-md-12">
-                        <ul className="pagination">
-                            <li className="page-item disabled">
-                                <a className="page-link" href="/store/0">
-                                    «
-                                </a>
-                            </li>
-                            <li className="page-item active">
-                                <a className="page-link" href="/store/1">
-                                    1
-                                </a>
-                            </li>
-                            <li className="page-item disabled">
-                                <a className="page-link" href="/store/2">
-                                    »
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>

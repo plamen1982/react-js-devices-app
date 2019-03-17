@@ -26,9 +26,9 @@ class AuthenticationService {
  * signup at http://localhost:5000/auth/signup
  * @returns {Promise} with the data from the api at this url
  */
-signup(signupRequestObject) {
-    return post(this.signupUrl, signupRequestObject);
-}
+    signup(signupRequestObject) {
+        return post(this.signupUrl, signupRequestObject);
+    }
 }
 
 export default AuthenticationService;

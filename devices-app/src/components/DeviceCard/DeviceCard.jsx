@@ -5,7 +5,7 @@ class DeviceCard extends Component {
     render() {
         const { image, model, description, deviceId } = this.props;
         return (
-            <div className="card col-4">
+            <div className="card col-6">
                 <img
                     className="card-img-top card-image"
                     src={image}

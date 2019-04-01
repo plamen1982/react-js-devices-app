@@ -24,11 +24,11 @@ const AuthorizedRouteWithContext = (props) => {
     return(
         <UserConsumer>
             {
-                ({ isLoggedIn, roles }) => (
+                ({ user }) => (
                     <AuthorizedRoute 
                         {...props}
-                        roles={roles}
-                        isLoggedIn={isLoggedIn}
+                        roles={user.roles}
+                        isLoggedIn={user.isLoggedIn}
                     />
                 )
             }

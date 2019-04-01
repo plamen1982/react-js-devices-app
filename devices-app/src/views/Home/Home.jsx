@@ -28,8 +28,8 @@ const HomeWithConsumer = (props) => {
     return (
         <UserConsumer>
             {
-                ({ isLoggedIn, username }) => (
-                    <Home {...props} isLoggedIn={isLoggedIn} username={username} />
+                ({ user }) => (
+                    <Home {...props} isLoggedIn={user.isLoggedIn} username={user.username} />
                 )
             }
         </UserConsumer>

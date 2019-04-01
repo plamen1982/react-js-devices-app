@@ -29,7 +29,6 @@ class AllDevices extends Component {
 }
 
 const AllDevicesWithContext = (props) => {
-    debugger;
     return(
         <DeviceConsumer> 
             {

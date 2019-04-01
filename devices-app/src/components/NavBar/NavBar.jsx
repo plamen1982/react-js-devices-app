@@ -4,7 +4,9 @@ import { UserConsumer } from "../../context/user-context";
 
 class NavBar extends Component {
     render() {
-        const { isLoggedIn, username } = this.props;
+        const { user } = this.props;
+        const { isLoggedIn, username } = user;
+
         return (
             <header>
                 <nav className="navbar-menu">
@@ -17,9 +19,14 @@ class NavBar extends Component {
                     {/* <NavLink to="/my-devices" exact>
                         My Devices
                     </NavLink> */}
-                    <NavLink to="/create-device" exact>
+                    {
+                    user.roles.includes('Admin')
+                    ? <NavLink to="/create-device" exact>
                         Create Device
                     </NavLink>
+                    : null
+                    }
+
                     {
                         isLoggedIn 
                         ? ( <NavLink to="/logout">Logout</NavLink> ) 
@@ -48,8 +55,8 @@ const NavBarWithConsumer = (props) => {
     return (
         <UserConsumer>
             {
-                ({ isLoggedIn, username }) => (
-                    <NavBar {...props} isLoggedIn={isLoggedIn} username={username} />
+                ({ user }) => (
+                    <NavBar {...props} user={user} />
                 )
             }
         </UserConsumer>

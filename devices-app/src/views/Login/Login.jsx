@@ -113,9 +113,9 @@ const LoginWithContext = (props) => {
     return(
         <UserConsumer>
             {
-                ({ isLoggedIn, updateUser }) => (
+                ({ user, updateUser }) => (
                     <Login 
-                        isLoggedIn={isLoggedIn}
+                        isLoggedIn={user.isLoggedIn}
                         updateUser={updateUser}
                         {...props}
                     />

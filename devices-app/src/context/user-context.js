@@ -3,8 +3,7 @@ import { createContext } from "react";
 const defaultUserState = { 
     roles: [], 
     username: "", 
-    isLoggedIn: false, 
-    updateUser() {} 
+    isLoggedIn: false
 };
 
 const { Consumer: UserConsumer, Provider: UserProvider } = createContext(defaultUserState);

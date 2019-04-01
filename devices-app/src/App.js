@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Home from "../src/views/Home/Home";
 import NotFound from "../src/views/NotFound/NotFound";
-import Login from "../src/views/Login/Login";
+import LoginWithContext from "../src/views/Login/Login";
 import Logout from "../src/views/Logout/Logout";
 import CreateDevice from "../src/views/CreateDevice/CreateDevice";
 import EditDevice from "../src/views/EditDevice/EditDevice";
@@ -13,9 +13,9 @@ import MyDevices from "../src/views/MyDevices/MyDevices";
 import Signup from "../src/views/Signup/Signup";
 import AllDevices from "../src/views/AllDevices/AllDevices";
 
-import NavBar from "../src/components/NavBar/NavBar";
+import NavBarWithConsumer from "../src/components/NavBar/NavBar";
 import AllDevicesCards from "../src/components/AllDevicesCards/AllDevicesCards";
-import AuthorizedRoute from "../src/components/AuthorizedRoute/AuthorizedRoute";
+import AuthorizedRouteWithContext from "../src/components/AuthorizedRoute/AuthorizedRoute";
 
 import { UserProvider, defaultUserState } from "./context/user-context";
 import { DeviceProvider, defaultDeviceState } from "./context/device-context";
@@ -32,8 +32,7 @@ class App extends Component {
         this.state = {
             user: {
                 ...defaultUserState,
-                ...parsedUser,
-                updateUser: this.updateUser,
+                ...parsedUser
             },
             devices: {
                 ...defaultDeviceState,
@@ -45,6 +44,7 @@ class App extends Component {
     static devicesService = new DevicesService();
 
     updateUser = (user) => {
+        console.log(user);
         this.setState({ user });
     }
 
@@ -53,20 +53,22 @@ class App extends Component {
     }
     render() {
         const { user, devices } = this.state;
-
+        const objForLogin = {
+            updateUser: this.updateUser, user
+        }
         return (
             <Router>
                 <DeviceProvider value={devices}>
-                    <UserProvider value={user}>
-                        <NavBar />
+                    <UserProvider value={objForLogin}>
+                        <NavBarWithConsumer />
                         <Switch>
                             <Route path="/" component={Home} exact={true} />
-                            <Route path="/login" component={Login} exact={true} />
+                            <Route path="/login" component={LoginWithContext} exact={true} />
                             <Route path="/signup" component={Signup} exact={true} />
                             <Route path="/my-devices" component={MyDevices} exact={true} />
                             <Route path="/all-devices" component={AllDevices} exact={true} />
-                            <AuthorizedRoute path="/create-device" component={CreateDevice} exact={true} allowedRoles={'admin'}/>
-                            <AuthorizedRoute path="/edit/:deviceId" component={EditDevice} exact={true} allowedRoles={'admin'}/>
+                            <AuthorizedRouteWithContext path="/create-device" component={CreateDevice} exact={true} allowedRoles={'admin'}/>
+                            <AuthorizedRouteWithContext path="/edit/:deviceId" component={EditDevice} exact={true} allowedRoles={'admin'}/>
                             <Route path="/logout" component={Logout} exact={true}/>
                             <Route path="/review/:deviceId" component={DetailsDevice} exact={true} />
                             <Route component={NotFound} />

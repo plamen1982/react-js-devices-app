@@ -14,7 +14,7 @@ import Signup from "../src/views/Signup/Signup";
 import AllDevices from "../src/views/AllDevices/AllDevices";
 
 import NavBarWithConsumer from "../src/components/NavBar/NavBar";
-import AllDevicesCards from "../src/components/AllDevicesCards/AllDevicesCards";
+// import AllDevicesCards from "../src/components/AllDevicesCards/AllDevicesCards";
 import AuthorizedRouteWithContext from "../src/components/AuthorizedRoute/AuthorizedRoute";
 
 import { UserProvider, defaultUserState } from "./context/user-context";
@@ -36,7 +36,6 @@ class App extends Component {
             },
             devices: {
                 ...defaultDeviceState,
-                updateDevices: this.updateDevices,
             }
         }
     }
@@ -51,15 +50,23 @@ class App extends Component {
     updateDevices = (devices) => {
         this.setState({ devices });
     }
+    
     render() {
         const { user, devices } = this.state;
-        const objForLogin = {
-            updateUser: this.updateUser, user
+        const contextForDevices = {
+            updateDevices: this.updateDevices,             
+            devices
         }
+
+        const contextForLogin = {
+            updateUser: this.updateUser, 
+            user
+        }
+
         return (
             <Router>
-                <DeviceProvider value={devices}>
-                    <UserProvider value={objForLogin}>
+                <DeviceProvider value={contextForDevices}>
+                    <UserProvider value={contextForLogin}>
                         <NavBarWithConsumer />
                         <Switch>
                             <Route path="/" component={Home} exact={true} />

@@ -32,9 +32,10 @@ const AllDevicesWithContext = (props) => {
     return(
         <DeviceConsumer> 
             {
-                (dev) => (
+                ({ devices, updateDevices}) => (
                     <AllDevices 
-                        devices={dev}
+                        devices={devices}
+                        updateDevices={updateDevices}
                         {...props}
                     />
                 )

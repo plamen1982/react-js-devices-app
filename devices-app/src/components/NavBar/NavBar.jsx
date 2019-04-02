@@ -6,7 +6,7 @@ class NavBar extends Component {
     render() {
         const { user } = this.props;
         const { isLoggedIn, username } = user;
-
+        const isAdmin = user.roles.includes('Admin');
         return (
             <header>
                 <nav className="navbar-menu">
@@ -20,29 +20,22 @@ class NavBar extends Component {
                         My Devices
                     </NavLink> */}
                     {
-                    user.roles.includes('Admin')
-                    ? <NavLink to="/create-device" exact>
-                        Create Device
-                    </NavLink>
-                    : null
+                        isAdmin
+                            ? <NavLink to="/create-device" exact>Create Device</NavLink>
+                            : null
                     }
 
                     {
                         isLoggedIn 
-                        ? ( <NavLink to="/logout">Logout</NavLink> ) 
-                    : (
-                        <Fragment>
-                            <NavLink to="/login" exact>
-                                Login
-                            </NavLink>
-                            <NavLink to="/signup" exact>
-                                Signup
-                            </NavLink>
-                        </Fragment>
-                    )}
+                        ? <NavLink to="/logout">Logout</NavLink>
+                        : <Fragment>
+                            <NavLink to="/login" exact>Login</NavLink>
+                            <NavLink to="/signup" exact>Signup</NavLink>
+                            </Fragment>
+                    }
                     {
                         isLoggedIn
-                            ? <span className="text-danger">Hello, {username} !</span>
+                            ? <span className="text-danger">Hello, {username}! </span>
                             : null
                     }
                 </nav>

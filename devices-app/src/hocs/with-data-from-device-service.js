@@ -4,7 +4,8 @@ import DevicesService from "../services/devices-service";
 const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
     return class withDataFormDevice extends React.Component {
         constructor(props) {
-            super(props)
+            super(props);
+
             this.state = {
                 model: "", 
                 description: "", 
@@ -23,8 +24,25 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
             ))
         }
 
-        handleSubmit = async (id) => {
-           await withDataFormDevice.devicesService[serviceMethod](this.state, id);
+
+
+        handleSubmit = async () => {
+            console.log('handle submit')
+           const result = await withDataFormDevice.devicesService[serviceMethod](this.state);
+
+           if(result.success) {
+               alert('You created successfully your device')
+                this.setState({
+                    model: "", 
+                    description: "", 
+                    image: "", 
+                    creator: "", 
+                    price: "" 
+                })
+           } else {
+               console.log('something went wrong', result);
+               alert(result.message)
+           }
         } 
             render() {
                 return(
@@ -33,6 +51,7 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
                     {...this.state} 
                     onChange = {this.handleChange} 
                     onSubmit = {this.handleSubmit} 
+                    resetState = { this.resetState }
                 />
             )
         }

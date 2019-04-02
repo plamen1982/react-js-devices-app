@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import AuthenticationService from "../../services/authentication-service";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import { UserConsumer } from "../../context/user-context";
-import { ToastContainer } from "react-toastr";
+// import { ToastContainer } from "react-toastr";
 
 class Signup extends Component {
     state = {
@@ -15,9 +15,9 @@ class Signup extends Component {
 
     static authService = new AuthenticationService();
 
-    handleOnSumbit = (event) => {
+    handleOnSubmit = (event) => {
         event.preventDefault();
-        const { email, username, password, confirmPassword, error } = this.state;
+        const { email, username, password, confirmPassword, /**error */ } = this.state;
         const { updateUser } = this.props;
 
         if(password !== confirmPassword) {
@@ -71,7 +71,7 @@ class Signup extends Component {
 
     render() {
         const { email, username, password, confirmPassword, error } = this.state;
-        const { isLoggedIn } = this.props;
+        // const { isLoggedIn } = this.props;
         if(error) {
             return (
                 <div>{error}</div>
@@ -80,7 +80,7 @@ class Signup extends Component {
         return (
             <div className="form-wrapper">
                 <h1>Register</h1>
-                <form onSubmit={this.handleOnSumbit}>
+                <form onSubmit={this.handleOnSubmit}>
                     <div className="form-group">
                         <label htmlFor="email">E-mail</label>
                         <input

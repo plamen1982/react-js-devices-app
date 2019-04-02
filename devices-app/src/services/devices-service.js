@@ -1,4 +1,4 @@
-import { get, post, put } from "../data/crud";
+import { get, post } from "../data/crud";
 
 /** Class used as service for fetching data */
 class DevicesService {

@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import { UserConsumer } from "../../context/user-context"
 class DeviceCard extends Component {
     render() {
-        const { image, model, description, deviceId, price } = this.props;
+        debugger;
+        const { image, model, description, deviceId, price, user } = this.props;
+        const isAdmin = user.roles.includes('Admin');
+        const isLoggedIn = user.isLoggedIn;
         return (
             <div className="card col-6">
                 <img
@@ -25,28 +28,46 @@ class DeviceCard extends Component {
                 
                 <div className="card-footer">
                     <small className="text-muted" />
-                    <Link
-                        className="btn btn-primary float-right btn-sm"
-                        to={`/review/${deviceId}`}
-                    >
-                        Review
-                    </Link>
-                    <Link
-                        className="btn btn-danger float-right btn-sm"
-                        to={`/edit/${deviceId}`}
-                    >
-                        Edit
-                    </Link>
-                    {/* <button
-                        type="button"
-                        className="btn btn-warning float-right btn-sm"
-                    >
-                        Borrow
-                    </button> */}
+                    {
+                        !isLoggedIn
+                            ? null
+                            :(
+                                isAdmin 
+                                ? <Link className="btn btn-warning float-right btn-sm" to={`/edit/${deviceId}`}> Edit </Link>
+                                : <Link className="btn btn-primary float-right btn-sm" to={`/borrow/${deviceId}`}> Borrow </Link>
+                            )
+
+                    }
+
+                    {
+                        !isLoggedIn
+                        ? null 
+                        : (
+                            isAdmin
+                            ? <Link className="btn btn-danger float-right btn-sm" to={`/delete/${deviceId}`}> Delete </Link>
+                            : <Link className="btn btn-secondary float-right btn-sm" to={`/review/${deviceId}`}> Review </Link>
+                        )
+                    }
+
                 </div>
             </div>
         );
     }
 }
 
-export default DeviceCard;
+const DeviceCardWithUserConsumer = (props) => {
+    return (
+        <UserConsumer>
+            {
+                ({ user }) => (
+                    <DeviceCard 
+                        user={user}
+                        {...props}
+                    />
+                )
+            }
+        </UserConsumer>
+    )
+}
+
+export default DeviceCardWithUserConsumer;

@@ -1,29 +1,36 @@
-import React from "react";
+import React, { Component } from "react";
 import FormDevice from "../../components/FormDevice/FormDevice";
 import { withDataFromDeviceService } from "../../hocs/with-data-from-device-service";
 
 
-const CreateDevice = (props) => {
-    const handleChange = ({ target }) => {
+class CreateDevice extends Component  {
+    handleChange = ({ target }) => {
         const inputName = target.name;
         const inputValue = target.value;
 
-        props.onChange(inputName, inputValue);
+        this.props.onChange(inputName, inputValue);
     };
 
-    const handleSumbit = (e) => {
+    handleSumbit = (e) => {
         e.preventDefault();
-        props.onSubmit();
+        this.props.onSubmit();
     };
 
-    return (
-        <FormDevice 
-            handleChange={handleChange}
-            handleSumbit={handleSumbit}
-            titleForm="Create New Device"
-            buttonName="Create"
-        />
-    );
+    resetState = () => {
+        
+    }
+    render() {
+        console.log('create device');
+        return (
+            <FormDevice 
+                handleChange={this.handleChange}
+                handleSumbit={this.handleSumbit}
+                resetState={this.resetState}
+                titleForm="Create New Device"
+                buttonName="Create"
+            />
+        );
+    }
 }
 
 export default withDataFromDeviceService('createDevice')(CreateDevice);

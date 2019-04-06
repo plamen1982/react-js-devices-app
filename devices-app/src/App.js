@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Home from "../src/views/Home/Home";
-import NotFound from "../src/views/NotFound/NotFound";
-import LoginWithContext from "../src/views/Login/Login";
-import Logout from "../src/views/Logout/Logout";
-import CreateDevice from "../src/views/CreateDevice/CreateDevice";
-import EditDevice from "../src/views/EditDevice/EditDevice";
-import DetailsDevice from "../src/views/DetailsDevice/DetailsDevice";
-import MyDevices from "../src/views/MyDevices/MyDevices";
-import Signup from "../src/views/Signup/Signup";
-import AllDevices from "../src/views/AllDevices/AllDevices";
+import Home from "../src/screens/Home/Home";
+import NotFound from "../src/screens/NotFound/NotFound";
+import LoginWithContext from "../src/screens/Login/Login";
+import Logout from "../src/screens/Logout/Logout";
+import CreateDevice from "../src/screens/CreateDevice/CreateDevice";
+import EditDevice from "../src/screens/EditDevice/EditDevice";
+import DetailsDevice from "../src/screens/DetailsDevice/DetailsDevice";
+import MyDevices from "../src/screens/MyDevices/MyDevices";
+import Signup from "../src/screens/Signup/Signup";
+import AllDevices from "../src/screens/AllDevices/AllDevices";
 
 import NavBarWithConsumer from "../src/components/NavBar/NavBar";
 // import AllDevicesCards from "../src/components/AllDevicesCards/AllDevicesCards";
@@ -43,7 +43,7 @@ class App extends Component {
     static devicesService = new DevicesService();
 
     updateUser = (user) => {
-        console.log(user);
+        console.log("updateUser", user);
         this.setState({ user });
     }
 

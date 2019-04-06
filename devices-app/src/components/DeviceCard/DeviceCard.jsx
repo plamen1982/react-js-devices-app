@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { UserConsumer } from "../../context/user-context"
 class DeviceCard extends Component {
     render() {
-        debugger;
         const { image, model, description, deviceId, price, user } = this.props;
         const isAdmin = user.roles.includes('Admin');
         const isLoggedIn = user.isLoggedIn;

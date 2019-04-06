@@ -1,21 +1,24 @@
 const express = require('express');
 const authCheck = require('../config/auth-check');
 const Borrow = require('../models/Borrow');
+const User = require('../models/User');
 
 const router = new express.Router();
 
 //Create comprehensive documentation JSDocs
 //route -> borrow/submit
 //TO DO double check the properties from the model
-router.post('/submit', authCheck, (req, res) => {
-
-  const device = req.body;
+router.post('/submit/:deviceId', authCheck, (req, res) => {
+  debugger;
+  const { deviceId } = req.params;
   const borrowObj = {
-    creator: req.user._id,
-    device,
+    user: req.user._id,
+    borrowedDevices: [],
+    status: "Not Available"
   }
-
-  Borrow
+  
+    borrowObj.borrowedDevices.push(deviceId);
+    Borrow
     .create(borrowObj)
     .then((createdBorrow) => {
       res.status(200).json({

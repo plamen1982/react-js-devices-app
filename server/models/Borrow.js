@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const REQUIRED_VALIDATION_MESSAGE = '{PATH} is required';
 
 const borrowSchema = mongoose.Schema({
-  user: {type: mongoose.Schema.Types.ObjectId, required: REQUIRED_VALIDATION_MESSAGE}, //probably should be user
-  borrowedDevices: [], //products
-  date: {type: mongoose.Schema.Types.Date, required: REQUIRED_VALIDATION_MESSAGE, default: Date.now},
+  user: {type: mongoose.Schema.Types.ObjectId, required: REQUIRED_VALIDATION_MESSAGE, ref: 'User'}, //probably should be user
+  borrowedDevices: [], //the original products
+  date: { type: mongoose.Schema.Types.Date, required: REQUIRED_VALIDATION_MESSAGE, default: Date.now },
   status: {
     type: mongoose.Schema.Types.String,
     enum: {

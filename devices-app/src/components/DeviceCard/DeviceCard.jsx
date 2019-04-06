@@ -31,7 +31,7 @@ class DeviceCard extends Component {
                     {
                         !isLoggedIn
                             ? null
-                            :(
+                            : (
                                 isAdmin 
                                 ? <Link className="btn btn-warning float-right btn-sm" to={`/edit/${deviceId}`}> Edit </Link>
                                 : <Link className="btn btn-primary float-right btn-sm" to={`/borrow/${deviceId}`}> Borrow </Link>

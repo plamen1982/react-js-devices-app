@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const encryption = require('../utilities/encryption');
 
 const REQUIRED_VALIDATION_MESSAGE = '{PATH} is required';
@@ -8,7 +9,8 @@ let userSchema = new mongoose.Schema({
   username: {type: String, required: REQUIRED_VALIDATION_MESSAGE},
   salt: String,
   password: String,
-  roles: [String]
+  roles: [String],
+  borrowDevices: [{ type: Schema.Types.ObjectId, ref: 'Borrow' }]
 });
 
 userSchema.method({

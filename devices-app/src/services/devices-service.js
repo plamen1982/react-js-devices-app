@@ -32,11 +32,11 @@ editDevice(editDeviceObject, id) {
 }
 
 /**
- * edit device at url http://localhost:5000/device/edit/:id
+ * edit device at url http://localhost:5000/barrow/submit/:deviceId
  * @returns {Promise} with the data from the api at this url
  */
-borrowDevice(id) {
-    return post(`${this.borrowDeviceUrl}/${id}`);
+borrowDevice(deviceId) {
+    return post(`${this.borrowDeviceUrl}/${deviceId}`);
 }
 
 /**

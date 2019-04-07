@@ -27,7 +27,7 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
 
 
         handleSubmit = async () => {
-            console.log('handle submit')
+           console.log('handle submit')
            const result = await withDataFormDevice.devicesService[serviceMethod](this.state);
 
            if(result.success) {

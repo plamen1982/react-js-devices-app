@@ -1,9 +1,27 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { UserConsumer } from "../../context/user-context"
+import { UserConsumer } from "../../context/user-context";
+import DevicesService from "../../services/devices-service";
 class DeviceCard extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            image : props.image, 
+            model: props.model, 
+            description: props.description, 
+            deviceId: props.deviceId, 
+            price: props.price, 
+            isBorrowed: props.isBorrowed, 
+            user: props.user 
+        } ;
+    }
+
+
+    static devicesService = new DevicesService();
+
     render() {
-        const { image, model, description, deviceId, price, user } = this.props;
+        const { image, model, description, deviceId, price, isBorrowed, user } = this.state;
         const isAdmin = user.roles.includes('Admin');
         const isLoggedIn = user.isLoggedIn;
         return (
@@ -33,7 +51,12 @@ class DeviceCard extends Component {
                             : (
                                 isAdmin 
                                 ? <Link className="btn btn-warning float-right btn-sm" to={`/edit/${deviceId}`}> Edit </Link>
-                                : <Link className="btn btn-primary float-right btn-sm" to={`/borrow/${deviceId}`}> Borrow </Link>
+                                : (
+                                    isBorrowed
+                                    ? <button className="btn btn-primary float-right btn-sm" > This device is borrowed </button>
+                                    : <button className="btn btn-primary float-right btn-sm" onClick={() => this.borrowDeviceById(deviceId)}> Borrow </button>
+
+                                )
                             )
 
                     }
@@ -51,6 +74,20 @@ class DeviceCard extends Component {
                 </div>
             </div>
         );
+    }
+
+    borrowDeviceById = async (deviceId) => {
+        try {
+            const returnedDevice = await DeviceCard.devicesService.borrowDevice(deviceId);  
+            if(returnedDevice.success) {
+                this.setState({ isBorrowed: true });
+                await DeviceCard.devicesService.editDevice(this.state, deviceId)
+            }  
+            debugger;
+        } catch(error) {
+            //TODO replace with toastr
+            alert(error);
+        }
     }
 }
 

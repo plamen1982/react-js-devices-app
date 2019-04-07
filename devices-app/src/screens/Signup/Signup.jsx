@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AuthenticationService from "../../services/authentication-service";
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { UserConsumer } from "../../context/user-context";
 // import { ToastContainer } from "react-toastr";
 
@@ -11,14 +11,14 @@ class Signup extends Component {
         password: "",
         confirmPassword: "",
         error: "",
+        isSignedUp: false,
     }
 
     static authService = new AuthenticationService();
 
     handleOnSubmit = (event) => {
         event.preventDefault();
-        const { email, username, password, confirmPassword, /**error */ } = this.state;
-        const { updateUser } = this.props;
+        const { email, username, password, confirmPassword, isSignedUp } = this.state;
 
         if(password !== confirmPassword) {
             this.setState({
@@ -43,19 +43,12 @@ class Signup extends Component {
                     const errors = Object.values(credentials.errors).join('');
 
                     throw new Error(errors);
+                } else {
+                    this.setState({
+                        isSignedUp: true
+                    })
                 }
 
-                window.localStorage.setItem("auth_token", credentials.token);
-                window.localStorage.setItem("user", JSON.stringify( {
-                    ...credentials.user,
-                    isLoggedIn: true,
-                }));
-
-                updateUser({
-                    isLoggedIn: true,
-                    updateUser,
-                    ...credentials.user,
-                });
             } catch (error) {
                 console.log(error);
             }
@@ -63,20 +56,24 @@ class Signup extends Component {
     };
 
     handleOnChange = ({ target }) => {
-
         this.setState({
             [target.id]: target.value,
         });
     };
 
     render() {
-        const { email, username, password, confirmPassword, error } = this.state;
-        // const { isLoggedIn } = this.props;
+        const { email, username, password, confirmPassword, error, isSignedUp } = this.state;
+
         if(error) {
             return (
                 <div>{error}</div>
             )
         }
+
+        if(isSignedUp) {
+            return <Redirect to="/login" />;
+        }
+
         return (
             <div className="form-wrapper">
                 <h1>Register</h1>

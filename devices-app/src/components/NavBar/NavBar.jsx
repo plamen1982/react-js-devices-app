@@ -2,11 +2,16 @@ import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import { UserConsumer } from "../../context/user-context";
 
+//TODO NavBar is rendered two times, check why after project is done
 class NavBar extends Component {
     render() {
+        debugger;
         const { user } = this.props;
         const { isLoggedIn, username } = user;
-        const isAdmin = user.roles.includes('Admin');
+        let isAdmin = false;
+        if (user.roles.length > 0) {
+            isAdmin = user.roles.includes('Admin');
+        }
         return (
             <header>
                 <nav className="navbar-menu">
@@ -31,7 +36,7 @@ class NavBar extends Component {
                         : <Fragment>
                             <NavLink to="/login" exact>Login</NavLink>
                             <NavLink to="/signup" exact>Signup</NavLink>
-                            </Fragment>
+                        </Fragment>
                     }
                     {
                         isLoggedIn

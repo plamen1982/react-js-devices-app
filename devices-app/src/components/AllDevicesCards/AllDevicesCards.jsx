@@ -10,7 +10,7 @@ const AllDevicesCards = (props) =>  {
         return <Loading />;
     }
 
-    if(!isLoading && !devices.length) {
+    if(!isLoading && !devices.length > 0) {
         return(
             <h1 className="jumbotron">No devices here yet :(</h1>
         );

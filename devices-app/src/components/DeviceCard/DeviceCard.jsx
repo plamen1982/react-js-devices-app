@@ -22,8 +22,10 @@ class DeviceCard extends Component {
 
     render() {
         const { image, model, description, deviceId, price, isBorrowed, user } = this.state;
+        const isUser = user.roles.includes('User');
         const isAdmin = user.roles.includes('Admin');
-        const isLoggedIn = user.isLoggedIn;
+        const isVisitor = !user.roles.includes('User')&&!user.roles.includes('Admin');
+
         return (
             <div className="card col-6">
                 <img
@@ -46,8 +48,8 @@ class DeviceCard extends Component {
                 <div className="card-footer">
                     <small className="text-muted" />
                     {
-                        !isLoggedIn
-                            ? null
+                        isVisitor&&isBorrowed
+                            ? <button className="btn btn-primary float-right btn-sm" > This device is borrowed </button>
                             : (
                                 isAdmin 
                                 ? <Link className="btn btn-warning float-right btn-sm" to={`/edit/${deviceId}`}> Edit </Link>
@@ -62,7 +64,7 @@ class DeviceCard extends Component {
                     }
 
                     {
-                        !isLoggedIn
+                        isVisitor
                         ? null 
                         : (
                             isAdmin

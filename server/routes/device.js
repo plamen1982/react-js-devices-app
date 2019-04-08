@@ -1,6 +1,7 @@
 const express = require('express');
 const authCheck = require('../config/auth-check');
 const Device = require('../models/Device');
+const User = require('../models/User');
 
 const router = new express.Router();
 
@@ -337,4 +338,40 @@ router.delete('/delete/:id', authCheck, (req, res) => {
   }
 })
 
+router.post('/submit/:deviceId', authCheck, async (req, res) => {
+  const userId = req.user._id;
+
+  const { deviceId } = req.params;
+  try {
+    const currentDevice = await Device.findById(deviceId);
+    const currentUser = await User.findById(userId);
+    currentDevice.isBorrowed = true;
+    currentUser.borrowDevices.push(currentDevice);
+
+    await currentUser.save();
+    await currentDevice.save();
+
+    res.status(200).json({
+      currentUser,
+      currentDevice,
+      success: true,
+      message: 'Borrowed device created successfully.',
+    });
+  } catch(error) {
+    console.log(error);
+  }
+});
+
+//TO DO double check the properties from the model
+router.get('/user', authCheck, (req, res) => {
+  debugger;
+  User
+    .findById(req.user._id.toString())
+    .populate('borrowDevices')
+    .then(user => {
+      res
+        .status(200)
+        .json(user.borrowDevices);
+    });
+});
 module.exports = router;

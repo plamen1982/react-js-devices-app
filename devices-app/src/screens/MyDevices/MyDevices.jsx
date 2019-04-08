@@ -24,11 +24,11 @@ class MyDevices extends Component {
                                             <th>#1</th>
                                             <td>27.02.2019 г., 16:46:02 ч.</td>
                                             <td>$ 5.00</td>
-                                            <p>
+                                            <td>
                                                 <span className="label label-info">
                                                     Available
                                                 </span>
-                                            </p>
+                                            </td>
                                             <td>
                                                 <a
                                                     className="btn btn-outline-warning btn-sm"

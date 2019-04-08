@@ -7,12 +7,12 @@ let deviceSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.String,
         required: REQUIRED_VALIDATION_MESSAGE,
         unique: [true, "Model already exists."]
-    }, //title
-    typeDevice: [{ type: mongoose.Schema.Types.String }], //genres
+    }, 
+    typeDevice: [{ type: mongoose.Schema.Types.String }], 
     creator: {
         type: mongoose.Schema.Types.String,
         required: REQUIRED_VALIDATION_MESSAGE
-    }, //author, TODO remove or change with ObjectId the loggedIn user
+    }, 
     description: { type: mongoose.Schema.Types.String },
     price: {
         type: mongoose.Schema.Types.Number,
@@ -24,7 +24,8 @@ let deviceSchema = new mongoose.Schema({
     },
     likes: [{ type: mongoose.Schema.Types.Number }],
     reviews: [{ type: mongoose.Schema.Types.String }],
-    isBorrowed: { type: mongoose.Schema.Types.Boolean, default: false }
+    isBorrowed: { type: mongoose.Schema.Types.Boolean, default: false },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
 
 let Device = mongoose.model("Device", deviceSchema);

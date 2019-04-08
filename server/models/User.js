@@ -10,7 +10,7 @@ let userSchema = new mongoose.Schema({
   salt: String,
   password: String,
   roles: [String],
-  borrowDevices: [{ type: Schema.Types.ObjectId, ref: 'Borrow' }]
+  borrowDevices: [{ type: Schema.Types.ObjectId, ref: 'Device' }]
 });
 
 userSchema.method({

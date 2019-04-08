@@ -13,7 +13,8 @@ class DevicesService {
         this.allDevicesUrl = `${this.baseUrl}/device/all`;
         this.createDeviceUrl = `${this.baseUrl}/device/create`;
         this.editDeviceUrl = `${this.baseUrl}/device/edit`;
-        this.borrowDeviceUrl = `${this.baseUrl}/borrow/submit`;
+        this.borrowDeviceUrl = `${this.baseUrl}/device/submit`;
+        this.borrowDeviceByUserUrl = `${this.baseUrl}/device/user`;
     }
 /**
  * create device at url http://localhost:5000/device/create
@@ -40,13 +41,19 @@ borrowDevice(deviceId) {
 }
 
 /**
+ * edit device at url http://localhost:5000/barrow/submit/:deviceId
+ * @returns {Promise} with the data from the api at this url
+ */
+borrowDeviceByUser() {
+    return get(this.borrowDeviceByUserUrl);
+}
+/**
  * get all devices from url http://localhost:5000/device/all
  * @returns {Promise} with the data from the api at this url
  */
     getAllDevices() {
         return get(this.allDevicesUrl);
     }
-
 }
 
 export default DevicesService;

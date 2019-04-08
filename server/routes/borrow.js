@@ -9,48 +9,7 @@ const router = new express.Router();
 //Create comprehensive documentation JSDocs
 //route -> borrow/submit
 //TO DO double check the properties from the model
-router.post('/submit/:deviceId', authCheck, (req, res) => {
-  debugger;
-  const { deviceId } = req.params;
-  const borrowObj = {
-    user: req.user._id,
-    borrowedDevices: [],
-    status: "Not Available",
-  }
-  
-    borrowObj.borrowedDevices.push(deviceId);
-    Borrow
-    .create(borrowObj)
-    .then(async (createdBorrow) => {
-     const currentDevice = await Device.findById(deviceId);
-     currentDevice.isBorrowed = true;
-     await currentDevice.save();
 
-      res.status(200).json({
-        currentDevice,
-        success: true,
-        message: 'Borrowed device created successfully.',
-        data: createdBorrow,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      const message = 'Something went wrong :(';
-      return res.status(200).json({
-        success: false,
-        message: message,
-      });
-    });
-});
-
-//TO DO double check the properties from the model
-router.get('/user', authCheck, (req, res) => {
-  Borrow
-    .find({creator: req.user._id})
-    .then(borrows => {
-      res.status(200).json(borrows);
-    });
-});
 
 //TO DO double check the properties from the model
 //TO DO the route should be changed to /available

@@ -1,17 +1,22 @@
 import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import { UserConsumer } from "../../context/user-context";
-
+import DevicesService from "../../services/devices-service";
 //TODO NavBar is rendered two times, check why after project is done
 class NavBar extends Component {
+    state = {
+        devices: []
+    }
+
+    static devicesService = new DevicesService();
+
     render() {
-        debugger;
+        const { image, model, description, deviceId, price, isBorrowed } = this.state;
         const { user } = this.props;
         const { isLoggedIn, username } = user;
-        let isAdmin = false;
-        if (user.roles.length > 0) {
-            isAdmin = user.roles.includes('Admin');
-        }
+        const isUser = user.roles.includes('User');
+        const isAdmin = user.roles.includes('Admin');
+        const isVisitor = !user.roles.includes('User')&&!user.roles.includes('Admin');
         return (
             <header>
                 <nav className="navbar-menu">
@@ -21,15 +26,16 @@ class NavBar extends Component {
                     <NavLink to="/all-devices" exact>
                         All Devices
                     </NavLink>
-                    {/* <NavLink to="/my-devices" exact>
-                        My Devices
-                    </NavLink> */}
+                   {
+                    isUser 
+                        ? <NavLink to="/my-devices" exact>My Devices</NavLink>
+                        : null
+                   } 
                     {
-                        isAdmin
-                            ? <NavLink to="/create-device" exact>Create Device</NavLink>
-                            : null
+                    isAdmin
+                        ? <NavLink to="/create-device" exact>Create Device</NavLink>
+                        : null
                     }
-
                     {
                         isLoggedIn 
                         ? <NavLink to="/logout">Logout</NavLink>
@@ -46,6 +52,17 @@ class NavBar extends Component {
                 </nav>
             </header>
         );
+    }
+
+   async componentDidMount() {
+       try{
+           debugger;
+        const allDevicesByUser = await NavBar.devicesService.borrowDeviceByUser();
+        debugger;
+
+       } catch(error) {
+            alert(error.message)
+       }
     }
 }
 

@@ -5,17 +5,19 @@ class BorrowedBy extends Component {
 
     state = {
         username: "",
-        date: ""
+        date: "",
+        model: ""
     }
 
     static devicesService = new DevicesService();
 
     render() {
-        const { username, date } = this.state; 
+        const { username, date, model } = this.state; 
         return (
             <div className="jumbotron col-centered">
-                <h4>This device is borrowed by username: <p class="text-uppercase">{username}</p></h4>
-                <h4>On date: <p class="text-uppercase">{date}</p></h4>
+                <h4>This device: <p className="font-weight-bold">{model}</p></h4>
+                <h4>Is borrowed by username: <p className="font-weight-bold">{username}</p></h4>
+                <h4>On date: <p className="font-weight-bold">{date}</p></h4>
             </div>
         );
     }
@@ -26,9 +28,11 @@ class BorrowedBy extends Component {
         const user = await BorrowedBy.devicesService.getUserByBorrowedDevice(deviceId);
         console.log(user.user.username)
         console.log(user.date)
+        console.log(user)
         this.setState({
             username: user.user.username,
-            date: user.date
+            date: user.date,
+            model: user.model
         });
         debugger;
     }

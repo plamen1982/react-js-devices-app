@@ -1,10 +1,12 @@
 import React from "react";
 
-const FormDevice = ({ titleForm, buttonName, handleSumbit, handleChange}) => {
+class FormDevice extends React.Component {
+    render() {
+        const { titleForm, handleSumbit, handleChange,  buttonName } = this.props;
         return (
             <div className="form-wrapper">
                 <h1>{titleForm}</h1>
-                <form onSubmit={handleSumbit} onChange={handleChange}>
+                <form onSubmit={handleSumbit} onChange={handleChange} >
                     <div className="form-group">
                         <label htmlFor="model">model</label>
                         <input
@@ -54,6 +56,6 @@ const FormDevice = ({ titleForm, buttonName, handleSumbit, handleChange}) => {
             </div>
         );
     }
-
+}
 
 export default FormDevice;

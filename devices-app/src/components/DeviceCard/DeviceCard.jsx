@@ -22,9 +22,14 @@ class DeviceCard extends Component {
 
     render() {
         const { image, model, description, deviceId, price, isBorrowed, user } = this.state;
-        const isUser = user.roles.includes('User');
-        const isAdmin = user.roles.includes('Admin');
-        const isVisitor = !user.roles.includes('User')&&!user.roles.includes('Admin');
+            let isUser = [];
+            let isAdmin = [];
+            let isVisitor = true;
+        if(user.roles) {
+            isUser = user.roles.includes('User');
+            isAdmin = user.roles.includes('Admin');
+            isVisitor = !user.roles.includes('User')&&!user.roles.includes('Admin');
+        }
 
         return (
             <div className="card col-6">
@@ -49,18 +54,21 @@ class DeviceCard extends Component {
                     <small className="text-muted" />
                     {
                         isVisitor&&isBorrowed
-                            ? <button className="btn btn-primary float-right btn-sm" > This device is borrowed </button>
+                            ? <Link className="btn btn-primary float-right btn-sm" to={`borrowedBy/${deviceId}`}> This device is borrowed by: </Link>
                             : (
-                                isAdmin 
-                                ? <Link className="btn btn-warning float-right btn-sm" to={`/edit/${deviceId}`}> Edit </Link>
+                                isVisitor&&!isBorrowed 
+                                ? <button className="btn btn-warning float-right btn-sm" > Login to borrow device </button>
                                 : (
-                                    isBorrowed
-                                    ? <button className="btn btn-primary float-right btn-sm" > This device is borrowed </button>
-                                    : <button className="btn btn-primary float-right btn-sm" onClick={() => this.borrowDeviceById(deviceId)}> Borrow </button>
+                                    isAdmin
+                                    ? <Link className="btn btn-warning float-right btn-sm" to={`/edit/${deviceId}`}> Edit </Link>
+                                    : (
+                                        isUser&&isBorrowed
+                                        ? <Link className="btn btn-primary float-right btn-sm" to={`borrowedBy/${deviceId}`} > This device is borrowed by: </Link>
+                                        : <button className="btn btn-primary float-right btn-sm" onClick={() => this.borrowDeviceById(deviceId)}> Borrow </button>
+                                    )
 
-                                )
                             )
-
+                        )
                     }
 
                     {

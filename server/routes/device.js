@@ -345,7 +345,9 @@ router.post('/submit/:deviceId', authCheck, async (req, res) => {
   try {
     const currentDevice = await Device.findById(deviceId);
     const currentUser = await User.findById(userId);
+    currentDevice.user = userId;
     currentDevice.isBorrowed = true;
+    currentDevice.date = Date.now();
     currentUser.borrowDevices.push(currentDevice);
 
     await currentUser.save();
@@ -374,4 +376,19 @@ router.get('/user', authCheck, (req, res) => {
         .json(user.borrowDevices);
     });
 });
+
+router.get('/:deviceId', (req, res) => {
+
+  const { deviceId } = req.params;
+  Device
+    .findById(deviceId)
+    .populate('user')
+    .then(device => {
+      debugger;
+      res
+        .status(200)
+        .json(device)
+    });
+});
+
 module.exports = router;

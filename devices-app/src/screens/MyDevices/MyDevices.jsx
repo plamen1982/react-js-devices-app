@@ -29,17 +29,16 @@ class MyDevices extends Component {
                                     </thead>
                                     <tbody>{
                                     myDevices.map((device, index) => (
-                                    
-                                    <tr>
-                                        <td>{index + 1}: {device.model}</td>
-                                        <td>{device.date}</td>
-                                        <td>{device.description}</td>
+                                        <tr>
+                                            <td>{index + 1}: {device.model}</td>
+                                            <td>{device.date}</td>
+                                            <td>{device.description}</td>
 
-                                        <td>
-                                            <a className="btn btn-outline-warning btn-sm" href="/Devices/details/5c76a2aa157aaa2c6084dc54">Return The Device</a>
-                                        </td>
-                                    </tr>
-                                    ))
+                                            <td>
+                                                <a className="btn btn-outline-warning btn-sm" href="/Devices/details/5c76a2aa157aaa2c6084dc54">Return The Device</a>
+                                            </td>
+                                        </tr>
+                                        ))
                                     }
                                     </tbody>
                                 </table>
@@ -55,7 +54,7 @@ class MyDevices extends Component {
 
    async componentDidMount() {
     try{
-     const myDevices = await MyDevices.devicesService.borrowDeviceByUser();
+     const myDevices = await MyDevices.devicesService.borrowDevicesByUser();
      console.log(myDevices)
      this.setState({
          myDevices,

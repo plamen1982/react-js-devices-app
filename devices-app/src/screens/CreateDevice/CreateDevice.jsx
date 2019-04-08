@@ -16,16 +16,13 @@ class CreateDevice extends Component  {
         this.props.onSubmit();
     };
 
-    resetState = () => {
-        
-    }
     render() {
-        console.log('create device');
+        console.log("craeteDevice", this);
         return (
             <FormDevice 
                 handleChange={this.handleChange}
                 handleSumbit={this.handleSumbit}
-                resetState={this.resetState}
+                resetState={this.props.resetState}
                 titleForm="Create New Device"
                 buttonName="Create"
             />

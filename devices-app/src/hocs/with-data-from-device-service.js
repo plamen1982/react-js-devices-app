@@ -31,27 +31,20 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
            const result = await withDataFormDevice.devicesService[serviceMethod](this.state);
 
            if(result.success) {
-               alert('You created successfully your device')
-                this.setState({
-                    model: "", 
-                    description: "", 
-                    image: "", 
-                    creator: "", 
-                    price: "" 
-                })
+               alert('You created successfully your device');
            } else {
                console.log('something went wrong', result);
                alert(result.message)
            }
         } 
+
             render() {
                 return(
                     <WrappedComponent 
                     {...this.props} 
                     {...this.state} 
-                    onChange = {this.handleChange} 
-                    onSubmit = {this.handleSubmit} 
-                    resetState = { this.resetState }
+                    onChange = { this.handleChange } 
+                    onSubmit = { this.handleSubmit } 
                 />
             )
         }

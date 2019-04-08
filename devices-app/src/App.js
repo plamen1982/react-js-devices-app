@@ -21,6 +21,7 @@ import { UserProvider, defaultUserState } from "./context/user-context";
 import { DeviceProvider, defaultDeviceState } from "./context/device-context";
 
 import DevicesService from "./services/devices-service";
+import BorrowedBy from "./screens/BorrowedBy/BorrowedBy";
 
 class App extends Component {
     constructor(props) {
@@ -78,6 +79,7 @@ class App extends Component {
                             <AuthorizedRouteWithContext path="/edit/:deviceId" component={EditDevice} exact={true} allowedRoles={'admin'}/>
                             <Route path="/logout" component={Logout} exact={true}/>
                             <Route path="/review/:deviceId" component={DetailsDevice} exact={true} />
+                            <Route path="/borrowedBy/:deviceId" component={BorrowedBy} />
                             <Route component={NotFound} />
                         </Switch>
                     </UserProvider>

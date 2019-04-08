@@ -1,14 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import { UserConsumer } from "../../context/user-context";
-import DevicesService from "../../services/devices-service";
 //TODO NavBar is rendered two times, check why after project is done
 class NavBar extends Component {
     state = {
         devices: []
     }
-
-    static devicesService = new DevicesService();
 
     render() {
         const { image, model, description, deviceId, price, isBorrowed } = this.state;
@@ -52,17 +49,6 @@ class NavBar extends Component {
                 </nav>
             </header>
         );
-    }
-
-   async componentDidMount() {
-       try{
-           debugger;
-        const allDevicesByUser = await NavBar.devicesService.borrowDeviceByUser();
-        debugger;
-
-       } catch(error) {
-            alert(error.message)
-       }
     }
 }
 

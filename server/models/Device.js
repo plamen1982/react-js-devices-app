@@ -25,7 +25,9 @@ let deviceSchema = new mongoose.Schema({
     likes: [{ type: mongoose.Schema.Types.Number }],
     reviews: [{ type: mongoose.Schema.Types.String }],
     isBorrowed: { type: mongoose.Schema.Types.Boolean, default: false },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    date: { type: mongoose.Schema.Types.Date, required: REQUIRED_VALIDATION_MESSAGE, default: Date.now }
+
 });
 
 let Device = mongoose.model("Device", deviceSchema);

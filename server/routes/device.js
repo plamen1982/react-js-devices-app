@@ -364,9 +364,9 @@ router.post('/submit/:deviceId', authCheck, async (req, res) => {
 
 //TO DO double check the properties from the model
 router.get('/user', authCheck, (req, res) => {
-  debugger;
+  const userId = req.user._id.toString();
   User
-    .findById(req.user._id.toString())
+    .findById(userId)
     .populate('borrowDevices')
     .then(user => {
       res

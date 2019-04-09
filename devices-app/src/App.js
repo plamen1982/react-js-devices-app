@@ -20,7 +20,6 @@ import AuthorizedRouteWithContext from "../src/components/AuthorizedRoute/Author
 import { UserProvider, defaultUserState } from "./context/user-context";
 import { DeviceProvider, defaultDeviceState } from "./context/device-context";
 
-import DevicesService from "./services/devices-service";
 import BorrowedBy from "./screens/BorrowedBy/BorrowedBy";
 
 class App extends Component {
@@ -40,8 +39,6 @@ class App extends Component {
             }
         }
     }
-
-    static devicesService = new DevicesService();
 
     updateUser = (user) => {
         console.log("updateUser", user);
@@ -86,15 +83,6 @@ class App extends Component {
                 </DeviceProvider>
             </Router>
         );
-    }
-
-    async componentDidMount() {
-        try {
-            const devices = await App.devicesService.getAllDevices();
-            this.updateDevices(devices);
-        } catch(error) {
-            this.setState({ error });
-        }
     }
 }
 

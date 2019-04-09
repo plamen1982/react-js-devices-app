@@ -343,24 +343,26 @@ router.post('/submit/:deviceId', authCheck, async (req, res) => {
 
   const { deviceId } = req.params;
   try {
-    const currentDevice = await Device.findById(deviceId);
-    const currentUser = await User.findById(userId);
-    currentDevice.user = userId;
-    currentDevice.isBorrowed = true;
-    currentDevice.date = Date.now();
-    if(!currentUser.borrowDevices.includes(currentDevice)) {
-      currentUser.borrowDevices.push(currentDevice);
+    if(deviceId) {
+      const currentDevice = await Device.findById(deviceId);
+      const currentUser = await User.findById(userId);
+      currentDevice.user = userId;
+      currentDevice.isBorrowed = true;
+      currentDevice.date = Date.now();
+      if(!currentUser.borrowDevices.includes(currentDevice)) {
+        currentUser.borrowDevices.push(currentDevice);
+      }
+  
+      await currentUser.save();
+      await currentDevice.save();
+  
+      res.status(200).json({
+        currentUser,
+        currentDevice,
+        success: true,
+        message: 'Borrowed device created successfully.',
+      });
     }
-
-    await currentUser.save();
-    await currentDevice.save();
-
-    res.status(200).json({
-      currentUser,
-      currentDevice,
-      success: true,
-      message: 'Borrowed device created successfully.',
-    });
   } catch(error) {
     console.log(error);
   }

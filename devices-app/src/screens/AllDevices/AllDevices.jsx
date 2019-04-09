@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import AllDevicesCards from "../../components/AllDevicesCards/AllDevicesCards";
-import { DeviceConsumer } from "../../context/device-context";
+import DevicesService from "../../services/devices-service";
 
 class AllDevices extends Component {
+    state = {
+        devices: [],
+        isLoading: true
+    }
+
+    static devicesService = new DevicesService();
+
     render() {
-        const { isLoading, devices } = this.props;
+        const { isLoading } = this.props;
+        const { devices } = this.state;
         return(
             <div className="container">
                 <div className="row space-top">
@@ -19,29 +27,23 @@ class AllDevices extends Component {
                 </div>
             <div className="row">
                 <AllDevicesCards 
-                    isLoading={isLoading}
                     devices={devices}
+                    isLoading={isLoading}
                 />
             </div>
         </div>
         )
     }
+    async componentDidMount() {
+        try {
+            const devices = await AllDevices.devicesService.getAllDevices();
+            this.setState({ devices, isLoading: false })
+        } catch(error) {
+            this.setState({ error });
+        }
+    }
 }
 
-const AllDevicesWithContext = (props) => {
-    return(
-        <DeviceConsumer> 
-            {
-                ({ devices, updateDevices}) => (
-                    <AllDevices 
-                        devices={devices}
-                        updateDevices={updateDevices}
-                        {...props}
-                    />
-                )
-            }
-        </DeviceConsumer>
-    );
-}
 
-export default AllDevicesWithContext;
+
+export default AllDevices;

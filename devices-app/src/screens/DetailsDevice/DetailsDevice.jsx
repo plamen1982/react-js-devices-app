@@ -6,14 +6,13 @@ class DetailsDevice extends Component {
             <div className="card col-4">
                 <img
                     className="card-img-top card-image"
-                    src="https://images-na.ssl-images-amazon.com/images/I/51fonMmNpnL.jpg"
-                    alt="Harry Potter"
+                    src="https://placeimg.com/640/480/tech"
+                    alt="High Tech Product"
                 />
                 <div className="card-body">
-                    <h5 className="card-title">Harry Potter</h5>
+                    <h5 className="card-title">Tablet next generation</h5>
                     <p className="card-text">
-                        Harry Potter and the Philosopher's Stone is a fantasy
-                        novel written by British author J. K. Rowling.
+                            Description of the High Tech Product
                     </p>
                     <p>Number of likes: <span className="badge badge-secondary">3</span></p>
                     <button

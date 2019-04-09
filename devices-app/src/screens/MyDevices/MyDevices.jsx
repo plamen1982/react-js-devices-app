@@ -3,7 +3,8 @@ import DevicesService from "../../services/devices-service";
 
 class MyDevices extends Component {
     state = {
-        myDevices: []
+        myDevices: [],
+        isRedirect: false
     }
 
     static devicesService = new DevicesService();
@@ -58,6 +59,7 @@ class MyDevices extends Component {
      console.log(myDevices)
      this.setState({
          myDevices,
+         isRedirect: true
      });
     } catch(error) {
          alert(error.message)
@@ -66,7 +68,11 @@ class MyDevices extends Component {
 
  removeDeviceById = async (deviceId) => {
      try{
+         debugger;
         await MyDevices.devicesService.returnDeviceById(deviceId);
+        this.setState({
+            isRedirect: true
+        })
      } catch(error) {
         alert(error);
      }

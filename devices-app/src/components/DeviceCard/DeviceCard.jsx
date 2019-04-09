@@ -59,7 +59,7 @@ class DeviceCard extends Component {
                             ? <Link className="btn btn-primary float-right btn-sm" to={`borrowedBy/${deviceId}`}> This device is borrowed by: </Link>
                             : (
                                 isVisitor
-                                ? <button className="btn btn-warning float-right btn-sm" > Login to borrow device </button>
+                                ? <Link className="btn btn-warning float-right btn-sm" to={"login"}> Login to borrow device </Link>
                                 : (
                                     isAdmin
                                     ? <Link className="btn btn-warning float-right btn-sm" to={`/edit/${deviceId}`}> Edit </Link>

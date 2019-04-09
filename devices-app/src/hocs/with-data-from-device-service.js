@@ -39,7 +39,14 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
            const result = await withDataFormDevice.devicesService[serviceMethod](deviceObjForRequest, deviceId);
 
            if(result.success) {
-               alert('You created successfully your device');
+               alert('Operation was successful');
+               this.setState({
+                model: "", 
+                description: "", 
+                image: "", 
+                creator: "", 
+                price: "" 
+               })
            } else {
                console.log('something went wrong', result);
                alert(result.message)

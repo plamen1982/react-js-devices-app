@@ -11,8 +11,10 @@ const EditDevice = (props) => {
     };
 
     const handleSumbit = (e) => {
+        debugger;
         e.preventDefault();
         const { match: { params: { deviceId } } } = props;
+        debugger;
         props.onSubmit(deviceId);
     };
 
@@ -22,6 +24,7 @@ const EditDevice = (props) => {
             handleSumbit={handleSumbit}
             titleForm="Edit Device"
             buttonName="Edit"
+
         />
     );
 }

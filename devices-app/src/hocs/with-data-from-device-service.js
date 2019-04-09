@@ -26,9 +26,17 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
 
 
 
-        handleSubmit = async () => {
-           console.log('handle submit')
-           const result = await withDataFormDevice.devicesService[serviceMethod](this.state);
+        handleSubmit = async (deviceId) => {
+           debugger;
+           const { model, description, image, creator, price } = this.state;
+           const deviceObjForRequest = {
+            model, 
+            description, 
+            image, 
+            creator, 
+            price
+           }
+           const result = await withDataFormDevice.devicesService[serviceMethod](deviceObjForRequest, deviceId);
 
            if(result.success) {
                alert('You created successfully your device');

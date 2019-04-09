@@ -13,7 +13,6 @@ class DeviceCard extends Component {
             deviceId: props.deviceId, 
             price: props.price, 
             isBorrowed: props.isBorrowed, 
-            user: props.user,
             isDeleted: false 
         } ;
     }
@@ -22,7 +21,8 @@ class DeviceCard extends Component {
     static devicesService = new DevicesService();
 
     render() {
-        const { image, model, description, deviceId, price, isBorrowed, user } = this.state;
+        const { image, model, description, deviceId, price, isBorrowed } = this.state;
+        const { user } = this.props;
             let isUser = [];
             let isAdmin = [];
             let isVisitor = true;
@@ -58,7 +58,7 @@ class DeviceCard extends Component {
                         isVisitor&&isBorrowed
                             ? <Link className="btn btn-primary float-right btn-sm" to={`borrowedBy/${deviceId}`}> This device is borrowed by: </Link>
                             : (
-                                isVisitor&&!isBorrowed 
+                                isVisitor
                                 ? <button className="btn btn-warning float-right btn-sm" > Login to borrow device </button>
                                 : (
                                     isAdmin
@@ -118,8 +118,8 @@ const DeviceCardWithUserConsumer = (props) => {
             {
                 ({ user }) => (
                     <DeviceCard 
-                        user={user}
                         {...props}
+                        user={user}
                     />
                 )
             }

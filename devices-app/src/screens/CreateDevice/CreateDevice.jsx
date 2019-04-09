@@ -22,7 +22,6 @@ class CreateDevice extends Component  {
             <FormDevice 
                 handleChange={this.handleChange}
                 handleSumbit={this.handleSumbit}
-                resetState={this.props.resetState}
                 titleForm="Create New Device"
                 buttonName="Create"
             />

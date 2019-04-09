@@ -3,6 +3,7 @@ import React from "react";
 class FormDevice extends React.Component {
     render() {
         const { titleForm, handleSumbit, handleChange,  buttonName } = this.props;
+        debugger;
         return (
             <div className="form-wrapper">
                 <h1>{titleForm}</h1>

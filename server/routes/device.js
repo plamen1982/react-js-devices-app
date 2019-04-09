@@ -38,7 +38,7 @@ function validateDeviceCreateForm(payload) {
 
   return {
     success: isFormValid,
-    message,
+    message: errors,
     errors
   }
 }

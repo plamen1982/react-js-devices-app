@@ -17,6 +17,7 @@ class DevicesService {
         this.borrowDevicesByUserUrl = `${this.baseUrl}/device/user`;
         this.getUserByBorrowedDeviceUrl = `${this.baseUrl}/device`;
         this.deleteDeviceByIdUrl = `${this.baseUrl}/device/delete`;
+        this.removeDeviceByIdUrl = `${this.baseUrl}/device/return`;
     }
 /**
  * create device at url http://localhost:5000/device/create
@@ -63,6 +64,10 @@ borrowDevicesByUser() {
 
     deleteDeviceById(deviceId) {
         return remove(`${this.deleteDeviceByIdUrl}/${deviceId}`)
+    }
+
+    returnDeviceById(deviceId) {
+        return remove(`${this.removeDeviceByIdUrl}/${deviceId}`)
     }
 }
 

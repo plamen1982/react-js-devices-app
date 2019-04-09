@@ -378,6 +378,21 @@ router.get('/user', authCheck, (req, res) => {
     });
 });
 
+router.delete('/return/:deviceId', authCheck, (req, res) => {
+  const { deviceId } = req.params;
+  const userId = req.user._id.toString();
+
+  User
+    .findById(userId)
+    .then(async (user) => {
+      const index = user.borrowDevices.indexOf(deviceId);
+      index > -1 ? user.borrowDevices.splice(index, 1): null
+      await user.save();
+      res
+        .status(200);
+    })
+});
+
 router.get('/:deviceId', (req, res) => {
 
   const { deviceId } = req.params;
@@ -385,7 +400,6 @@ router.get('/:deviceId', (req, res) => {
     .findById(deviceId)
     .populate('user')
     .then(device => {
-      debugger;
       res
         .status(200)
         .json(device)

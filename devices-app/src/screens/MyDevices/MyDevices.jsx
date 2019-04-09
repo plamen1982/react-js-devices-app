@@ -35,7 +35,7 @@ class MyDevices extends Component {
                                             <td>{device.description}</td>
 
                                             <td>
-                                                <a className="btn btn-outline-warning btn-sm" href="/Devices/details/5c76a2aa157aaa2c6084dc54">Return The Device</a>
+                                                <button className="btn btn-outline-warning btn-sm" onClick={() => { this.removeDeviceById(device._id) }}>Return The Device</button>
                                             </td>
                                         </tr>
                                         ))
@@ -53,17 +53,25 @@ class MyDevices extends Component {
 
 
    async componentDidMount() {
-    try{
+    try {
      const myDevices = await MyDevices.devicesService.borrowDevicesByUser();
      console.log(myDevices)
      this.setState({
          myDevices,
-     })
-
+     });
     } catch(error) {
          alert(error.message)
     }
  }
+
+ removeDeviceById = async (deviceId) => {
+     try{
+        await MyDevices.devicesService.returnDeviceById(deviceId);
+     } catch(error) {
+        alert(error);
+     }
+ }
+
 }
 
 export default MyDevices;

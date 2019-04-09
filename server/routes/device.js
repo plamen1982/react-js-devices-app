@@ -348,7 +348,7 @@ router.post('/submit/:deviceId', authCheck, async (req, res) => {
     currentDevice.user = userId;
     currentDevice.isBorrowed = true;
     currentDevice.date = Date.now();
-    if(!currentDevice.borrowDevices.includes(currentDevice)) {
+    if(!currentUser.borrowDevices.includes(currentDevice)) {
       currentUser.borrowDevices.push(currentDevice);
     }
 
@@ -386,7 +386,15 @@ router.delete('/return/:deviceId', authCheck, (req, res) => {
     .findById(userId)
     .then(async (user) => {
       const index = user.borrowDevices.indexOf(deviceId);
-      index > -1 ? user.borrowDevices.splice(index, 1): null
+      if(index > -1) {
+        user.borrowDevices.splice(index, 1);
+        Device
+          .findById(deviceId)
+          .then(async device => {
+            device.isBorrowed = false;
+            await device.save();
+          })
+      }
       await user.save();
       res
         .status(200);

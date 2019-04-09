@@ -27,7 +27,7 @@ function validateDeviceCreateForm(payload) {
     errors.price = 'Price must be a positive number.';
   }
 
-  if (!payload || typeof payload.image !== 'string' || !(payload.image.startsWith('https://') || payload.image.startsWith('http://')) || payload.image.length < 14) {
+  if (!payload || typeof payload.image !== 'string' || payload.image.length < 10) {
     isFormValid = false;
     errors.image = 'Please enter valid Image URL. Image URL must be at least 14 symbols.';
   }
@@ -310,7 +310,7 @@ router.post('/unlike/:id', authCheck, (req, res) => {
 })
 
 router.delete('/delete/:id', authCheck, (req, res) => {
-  const id = req.params.id
+  const id = req.params.id;
   if (req.user.roles.indexOf('Admin') > -1) {
     Device
       .findById(id)
@@ -364,7 +364,6 @@ router.post('/submit/:deviceId', authCheck, async (req, res) => {
   }
 });
 
-//TO DO double check the properties from the model
 router.get('/user', authCheck, (req, res) => {
   const userId = req.user._id.toString();
   User

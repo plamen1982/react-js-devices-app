@@ -1,4 +1,4 @@
-import { get, post } from "../data/crud";
+import { get, post, remove } from "../data/crud";
 
 /** Class used as service for fetching data */
 class DevicesService {
@@ -15,7 +15,8 @@ class DevicesService {
         this.editDeviceUrl = `${this.baseUrl}/device/edit`;
         this.borrowDeviceUrl = `${this.baseUrl}/device/submit`;
         this.borrowDevicesByUserUrl = `${this.baseUrl}/device/user`;
-        this.getUserByBorrowedDeviceUrl = `${this.baseUrl}/device`
+        this.getUserByBorrowedDeviceUrl = `${this.baseUrl}/device`;
+        this.deleteDeviceByIdUrl = `${this.baseUrl}/device/delete`;
     }
 /**
  * create device at url http://localhost:5000/device/create
@@ -58,8 +59,11 @@ borrowDevicesByUser() {
 
     getUserByBorrowedDevice(deviceId) {
         return get(`${this.getUserByBorrowedDeviceUrl}/${deviceId}`)
-    }
+    } 
 
+    deleteDeviceById(deviceId) {
+        return remove(`${this.deleteDeviceByIdUrl}/${deviceId}`)
+    }
 }
 
 export default DevicesService;

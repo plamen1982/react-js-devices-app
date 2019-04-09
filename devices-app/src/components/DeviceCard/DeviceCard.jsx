@@ -13,7 +13,8 @@ class DeviceCard extends Component {
             deviceId: props.deviceId, 
             price: props.price, 
             isBorrowed: props.isBorrowed, 
-            user: props.user 
+            user: props.user,
+            isDeleted: false 
         } ;
     }
 
@@ -25,6 +26,7 @@ class DeviceCard extends Component {
             let isUser = [];
             let isAdmin = [];
             let isVisitor = true;
+
         if(user.roles) {
             isUser = user.roles.includes('User');
             isAdmin = user.roles.includes('Admin');
@@ -76,7 +78,7 @@ class DeviceCard extends Component {
                         ? null 
                         : (
                             isAdmin
-                            ? <Link className="btn btn-danger float-right btn-sm" to={`/delete/${deviceId}`}> Delete </Link>
+                            ? <button className="btn btn-danger float-right btn-sm" onClick={ () => this.deleteDeviceById(deviceId) } > Delete </button>
                             : <Link className="btn btn-secondary float-right btn-sm" to={`/review/${deviceId}`}> Review </Link>
                         )
                     }
@@ -97,6 +99,15 @@ class DeviceCard extends Component {
         } catch(error) {
             //TODO replace with toastr
             alert(error);
+        }
+    }
+
+    deleteDeviceById = async (deviceId) => {
+        try {
+            await DeviceCard.devicesService.deleteDeviceById(deviceId);
+            this.setState({ isDeleted: true })
+        } catch(error) {
+            alert(error)
         }
     }
 }

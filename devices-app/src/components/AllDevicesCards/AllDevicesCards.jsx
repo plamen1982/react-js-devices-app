@@ -19,9 +19,9 @@ const AllDevicesCards = (props) =>  {
     return (
         <div className="card-deck space-top">
             {
-                    devices.map(device => (
+                    devices.map((device, index) => (
                     <DeviceCard
-                        key={device._id}
+                        key={index}
                         image={device.image}
                         deviceId={device._id}
                         {...device}

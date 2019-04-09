@@ -348,7 +348,9 @@ router.post('/submit/:deviceId', authCheck, async (req, res) => {
     currentDevice.user = userId;
     currentDevice.isBorrowed = true;
     currentDevice.date = Date.now();
-    currentUser.borrowDevices.push(currentDevice);
+    if(!currentDevice.borrowDevices.includes(currentDevice)) {
+      currentUser.borrowDevices.push(currentDevice);
+    }
 
     await currentUser.save();
     await currentDevice.save();

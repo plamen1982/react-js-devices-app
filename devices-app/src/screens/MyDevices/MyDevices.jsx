@@ -29,7 +29,7 @@ class MyDevices extends Component {
                                     </thead>
                                     <tbody>{
                                     myDevices.map((device, index) => (
-                                        <tr>
+                                        <tr key={index}>
                                             <td>{index + 1}: {device.model}</td>
                                             <td>{device.date}</td>
                                             <td>{device.description}</td>

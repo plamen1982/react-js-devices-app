@@ -41,9 +41,9 @@ class AllDevices extends Component {
                     <form className="form-inline md-form form-sm active-cyan active-cyan-2">
                         <i className="fa fa-search" aria-hidden="true" />
                     </form>
-                    <label htmlFor="device">Search device:</label>
-                    <input placeholder="search device..." onChange={this.handleOnChange} type="device" className="form-control" id="device" />
-                    <button type="button" className="btn btn-warning float-right btn-sm" onClick={this.handleOnSearch}>Search</button>
+                    <label htmlFor="device">Search Section</label>
+                    <input placeholder="Search For A Device..." onChange={this.handleOnChange} type="device" className="form-control" id="device" />
+                    <button type="button" className="btn btn-success float-right btn-sm" onClick={this.handleOnSearch}>Search</button>
                     <br/>
                 </div>
             </div>

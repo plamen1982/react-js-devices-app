@@ -17,9 +17,9 @@ const AllDevicesCards = (props) =>  {
     }
 
     return (
-        devices.map((device, index) => (
+        devices.map((device) => (
             <DeviceCard
-                key={index}
+                key={device.model}
                 image={device.image}
                 deviceId={device._id}
                 {...device}

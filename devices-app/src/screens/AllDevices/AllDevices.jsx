@@ -21,7 +21,7 @@ class AllDevices extends Component {
     handleOnSearch = (event) => {
         event.preventDefault();
         const { currentDeviceForSearch, devices } = this.state;
-
+        debugger;
         let filtredDevices = devices.filter(device => device.model.toLowerCase().includes(currentDeviceForSearch.toLowerCase()));
         this.setState({
             devices: filtredDevices

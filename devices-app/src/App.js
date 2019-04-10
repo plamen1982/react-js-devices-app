@@ -33,9 +33,6 @@ class App extends Component {
             user: {
                 ...defaultUserState,
                 ...parsedUser
-            },
-            devices: {
-                ...defaultDeviceState,
             }
         }
     }
@@ -45,8 +42,8 @@ class App extends Component {
         this.setState({ user });
     }
 
-    updateDevices = (devices) => {
-        this.setState({ devices });
+    updateDevices = () => {
+        this.setState();
     }
     
     render() {
@@ -71,7 +68,7 @@ class App extends Component {
                             <Route path="/login" component={LoginWithContext} exact={true} />
                             <Route path="/signup" component={Signup} exact={true} />
                             <Route path="/my-devices" component={MyDevices} exact={true} />
-                            <Route path="/all-devices" component={AllDevices} exact={true} />
+                            <Route path="/all-devices" component={AllDevices} exact={true} updateDevices={this.updateDevices}/>
                             <AuthorizedRouteWithContext path="/create-device" component={CreateDevice} exact={true} allowedRoles={'admin'}/>
                             <AuthorizedRouteWithContext path="/edit/:deviceId" component={EditDevice} exact={true} allowedRoles={'admin'}/>
                             <Route path="/logout" component={Logout} exact={true}/>

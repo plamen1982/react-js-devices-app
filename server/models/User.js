@@ -11,7 +11,7 @@ let userSchema = new mongoose.Schema({
   password: String,
   roles: [String],
   borrowDevices: [{ type: Schema.Types.ObjectId, ref: 'Device' }]
-});
+}, { usePushEach : true });
 
 userSchema.method({
   authenticate: function (password) {

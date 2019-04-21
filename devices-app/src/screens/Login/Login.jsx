@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AuthenticationService from "../../services/authentication-service";
 import { Redirect } from "react-router-dom";
 import { UserConsumer } from "../../context/user-context";
+import { toast } from "react-toastify";
 
 class Login extends Component {
 
@@ -34,7 +35,7 @@ class Login extends Component {
 
                     throw new Error(errors);
                 }
-
+                toast.success('Logged In Successully.')
                 window.localStorage.setItem("auth_token", credentials.token);
                 window.localStorage.setItem("user", JSON.stringify( {
                     ...credentials.user,

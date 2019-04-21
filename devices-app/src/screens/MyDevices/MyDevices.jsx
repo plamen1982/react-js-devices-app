@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DevicesService from "../../services/devices-service";
-
+import { toast } from "react-toastify";
 class MyDevices extends Component {
     state = {
         myDevices: [],
@@ -12,7 +12,6 @@ class MyDevices extends Component {
     render() {
         const { myDevices } = this.state;
         return (
-
                 <div className="container">
                 <h1 className="text-center">My Devices</h1>
                 <div className="row" >
@@ -67,14 +66,14 @@ class MyDevices extends Component {
  removeDeviceById = async (deviceId) => {
      const { myDevices } = this.state;
      try {
-         //TODO add toastify
         const returnedDevice = await MyDevices.devicesService.returnDeviceById(deviceId);
+        toast.success("Device was returned successfully");
         const remainDevices = myDevices.filter(device => device.model !== returnedDevice.model);
         this.setState({
             myDevices: remainDevices
         })
      } catch(error) {
-        alert(error);
+        toast.error(error.message);
      }
  }
 }

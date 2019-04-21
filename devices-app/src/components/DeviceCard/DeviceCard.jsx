@@ -43,14 +43,14 @@ class DeviceCard extends Component {
                 />
                 <div className="card-body">
                     <h5 className="card-title">
-                        {model}
+                       Model name: {model}
                     </h5>
                     <p className="card-text">
-                        {description}
+                       Description: {description}
                     </p>
-                    <h5 className="card-title">
-                        {price}
-                    </h5>
+                    <p className="card-text">
+                      Price: {price}
+                    </p>
                 </div>
                 
                 <div className="card-footer">

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { UserConsumer, defaultUserState } from "../../context/user-context";
-
+import { toast } from "react-toastify";
 class Logout extends Component {
     constructor(props) {
         super(props);
@@ -12,6 +12,7 @@ class Logout extends Component {
     }
 
     render() {
+        toast.success('Loged Out Successully.')
         return <Redirect to="/" />;
     }
 }

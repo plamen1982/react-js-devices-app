@@ -12,7 +12,7 @@ class AllDevicesCards extends React.Component {
              loading = <Loading />;
         }
         if(!isLoading && !devices.length > 0) {
-            loadingMessage = <h1 className="jumbotron">No devices here yet :(</h1>
+            loadingMessage = <h1 className="jumbotron">No devices here :(</h1>
         }
         return (
             isLoading 

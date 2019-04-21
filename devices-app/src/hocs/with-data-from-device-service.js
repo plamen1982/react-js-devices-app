@@ -1,5 +1,6 @@
 import React from 'react';
 import DevicesService from "../services/devices-service";
+import { Redirect } from "react-router-dom";
 
 const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
     return class withDataFormDevice extends React.Component {
@@ -11,7 +12,8 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
                 description: "", 
                 image: "", 
                 creator: "", 
-                price: "" 
+                price: "",
+                submited: false,
             }
         }
         
@@ -21,11 +23,9 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
             this.setState(() => (
                { [inputFieldName]: inputFieldValue }
             ))
-            debugger;
         }
 
         handleSubmit = async (deviceId) => {
-            debugger;
            const { model, description, image, creator, price } = this.state;
            const deviceObjForRequest = {
             model, 
@@ -34,17 +34,12 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
             creator, 
             price,
            }
-           debugger;
            const result = await withDataFormDevice.devicesService[serviceMethod](deviceObjForRequest, deviceId);
 
            if(result.success) {
                alert('Operation was successful');
                this.setState({
-                model: "", 
-                description: "", 
-                image: "", 
-                creator: "", 
-                price: "" 
+                submited: true
                })
            } else {
                console.log('something went wrong', result);
@@ -53,6 +48,10 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
         } 
 
             render() {
+                const { submited } = this.state;
+                if(submited) {
+                    return <Redirect to="/all-devices" />;
+                }
                 return(
                     <WrappedComponent 
                     {...this.props} 

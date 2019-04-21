@@ -6,8 +6,8 @@ class FormDevice extends React.Component {
         const { model, description, image, price, creator } = device;
         return (
             <div className="form-wrapper">
-                <h1>{titleForm}</h1>
-                <form onSubmit={handleSumbit} onChange={handleChange} >
+                <h1>{ titleForm }</h1>
+                <form onSubmit={ handleSumbit } onChange={ handleChange }>
                     <div className="form-group">
                         <label htmlFor="model">model</label>
                         <input
@@ -57,7 +57,7 @@ class FormDevice extends React.Component {
                             value={price}
                         />
                     </div>
-                    <input type="submit" value={buttonName} />
+                    <input type="submit" value={buttonName}/>
                 </form>
             </div>
         );

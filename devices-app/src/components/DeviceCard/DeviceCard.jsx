@@ -23,7 +23,6 @@ class DeviceCard extends Component {
     render() {
         const { image, model, description, deviceId, price, isBorrowed } = this.state;
         const { user, deleteDeviceById } = this.props;
-        debugger;
             let isUser = [];
             let isAdmin = [];
             let isVisitor = true;

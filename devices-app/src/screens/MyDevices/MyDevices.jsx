@@ -55,7 +55,6 @@ class MyDevices extends Component {
    async componentDidMount() {
     try {
      const myDevices = await MyDevices.devicesService.borrowDevicesByUser();
-     console.log(myDevices)
      this.setState({
          myDevices,
          isRedirect: true
@@ -66,10 +65,13 @@ class MyDevices extends Component {
  }
 
  removeDeviceById = async (deviceId) => {
-     try{
-        await MyDevices.devicesService.returnDeviceById(deviceId);
+     const { myDevices } = this.state;
+     try {
+         //TODO add toastify
+        const returnedDevice = await MyDevices.devicesService.returnDeviceById(deviceId);
+        const remainDevices = myDevices.filter(device => device.model !== returnedDevice.model);
         this.setState({
-            isRedirect: true
+            myDevices: remainDevices
         })
      } catch(error) {
         alert(error);

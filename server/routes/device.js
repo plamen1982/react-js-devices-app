@@ -393,13 +393,14 @@ router.delete('/return/:deviceId', authCheck, (req, res) => {
         Device
           .findById(deviceId)
           .then(async device => {
-            device.isBorrowed = false;
-            await device.save();
+              device.isBorrowed = false;
+              const savedDevice = await device.save();
+              const savedUser = await user.save();
+              res
+              .status(200)
+              .json(savedDevice);
           })
       }
-      await user.save();
-      res
-        .status(200);
     })
 });
 

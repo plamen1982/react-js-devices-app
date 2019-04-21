@@ -26,9 +26,7 @@ class BorrowedBy extends Component {
         const { match: { params: { deviceId } } } = this.props;
 
         const user = await BorrowedBy.devicesService.getUserByBorrowedDevice(deviceId);
-        console.log(user.user.username)
-        console.log(user.date)
-        console.log(user)
+
         this.setState({
             username: user.user.username,
             date: user.date,

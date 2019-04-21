@@ -15,7 +15,6 @@ module.exports = (req, res, next) => {
       return res.status(401).end();
     }
     const userId = decoded.sub;
-    console.log("userId", userId);
     User
       .findById(userId)
       .then(user => {

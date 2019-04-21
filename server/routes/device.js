@@ -361,7 +361,7 @@ router.post('/submit/:deviceId', authCheck, async (req, res) => {
         currentUser,
         currentDevice,
         success: true,
-        message: 'Borrowed device created successfully.',
+        message: 'Device Borrowed.',
       });
     }
   } catch(error) {
@@ -407,12 +407,10 @@ router.delete('/return/:deviceId', authCheck, (req, res) => {
 
 router.get('/:deviceId', (req, res) => {
   const { deviceId } = req.params;
-  console.log('DeviceId', deviceId);
   Device
     .findById(deviceId)
     .populate('user')
     .then(device => {
-      console.log(device)
       res
         .status(200)
         .json(device)

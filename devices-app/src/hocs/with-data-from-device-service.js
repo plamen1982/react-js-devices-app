@@ -36,10 +36,8 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
             price,
            }
            const result = await withDataFormDevice.devicesService[serviceMethod](deviceObjForRequest, deviceId);
-           debugger;
            if(result.success) {
                if(serviceMethod === 'editDevice') {
-                   alert('successfully edited device')
                    toast.success('Successfully edited device');
                } else {
                     toast.success('Successfully created device');
@@ -82,7 +80,7 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
                         price,
                     });
                 } catch(error) {
-                    console.log(error);
+                    toast.error(error.message);
                 }
             }
         }
@@ -90,108 +88,3 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
 }
 
 export { withDataFromDeviceService };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from 'react';
-
-// function withDataFromService(Component, requestObject, serviceMethod, ...otherArgs) {
-//     return class extends React.Component {
-//         constructor(props) {
-//             super(props);
-
-//             this.state = {
-//                 data: requestObject,
-//                 error: null,
-//             }
-//         }
-
-//         handleOnSumbit = (event) => {
-//             event.preventDefault();
-//             let deviceId = "";
-//             if(this.state.data.id) {
-//                 deviceId  = this.state.data.id;
-//             }
-    
-//             const { model, description, image, creator, price } = this.state.data;
-
-//             const requestDeviceObject = { id: deviceId, model, description, image, creator, price }
-    
-//             this.setState({
-//                 error: ""
-//             }, async () => {
-//                 try {
-//                     const device = await serviceMethod(requestDeviceObject);
-//                     console.log(device);
-//                     if(!device.success) {
-//                         const errors = Object.values(device.errors).join('');
-    
-//                         throw new Error(errors);
-//                     }
-//                     } catch(error) {
-//                         console.log(error);
-//                     }
-//             })
-//         };
-    
-//         render() {
-//             const { data, error } = this.state;
-//             if(error) {
-//                 return <span>Something went wrong!</span>
-//             }
-
-//             return <Component data={data} {...this.props} />;
-//         }
-//     }
-// }
-
-// export default withDataFromService;

@@ -52,7 +52,6 @@ router.post('/available/:id', authCheck, (req, res) => {
           });
         })
         .catch((err) => {
-          console.log(err);
           const message = 'Something went wrong :(';
           return res.status(200).json({
             success: false,
@@ -61,7 +60,6 @@ router.post('/available/:id', authCheck, (req, res) => {
         });
     })
     .catch((err) => {
-      console.log(err);
       const message = 'Something went wrong :(';
       return res.status(200).json({
         success: false,

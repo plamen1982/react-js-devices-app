@@ -59,7 +59,7 @@ class MyDevices extends Component {
          isRedirect: true
      });
     } catch(error) {
-         alert(error.message)
+         toast.error(error.message);
     }
  }
 
@@ -68,6 +68,7 @@ class MyDevices extends Component {
      try {
         const returnedDevice = await MyDevices.devicesService.returnDeviceById(deviceId);
         toast.success("Device was returned successfully");
+        
         const remainDevices = myDevices.filter(device => device.model !== returnedDevice.model);
         this.setState({
             myDevices: remainDevices

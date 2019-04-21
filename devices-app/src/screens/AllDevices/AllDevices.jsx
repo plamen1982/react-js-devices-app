@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AllDevicesCards from "../../components/AllDevicesCards/AllDevicesCards";
 import DevicesService from "../../services/devices-service";
-
+import { toast } from "react-toastify"
 class AllDevices extends Component {
     state = {
         devices: [],
@@ -40,14 +40,14 @@ class AllDevices extends Component {
             const deletedDeviceFromDB = await AllDevices.devicesService.deleteDeviceById(deviceId);
 
             const filteredDevices = devices.filter(device => device.model !== deletedDeviceFromDB.device.model);
-
+            toast.success('Devices were deleted successuly')
             this.setState({
                 isDeleted: true,
                 filteredDevices,
                 devices: filteredDevices
             });
         } catch(error) {
-            alert(error);
+            toast.error(error.message);
         }
     }
 

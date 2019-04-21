@@ -18,10 +18,11 @@ import NavBarWithConsumer from "../src/components/NavBar/NavBar";
 import AuthorizedRouteWithContext from "../src/components/AuthorizedRoute/AuthorizedRoute";
 
 import { UserProvider, defaultUserState } from "./context/user-context";
-import { DeviceProvider, defaultDeviceState } from "./context/device-context";
+import { DeviceProvider } from "./context/device-context";
 
 import BorrowedBy from "./screens/BorrowedBy/BorrowedBy";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class App extends Component {
     constructor(props) {
         super(props);
@@ -63,12 +64,18 @@ class App extends Component {
                 <DeviceProvider value={contextForDevices}>
                     <UserProvider value={contextForLogin}>
                         <NavBarWithConsumer />
+                        <ToastContainer autoClose={3000}/>
                         <Switch>
                             <Route path="/" component={Home} exact={true} />
                             <Route path="/login" component={LoginWithContext} exact={true} />
                             <Route path="/signup" component={Signup} exact={true} />
                             <Route path="/my-devices" component={MyDevices} exact={true} />
-                            <Route path="/all-devices" component={AllDevices} exact={true} updateDevices={this.updateDevices}/>
+                            <Route 
+                                path="/all-devices" 
+                                component={AllDevices} 
+                                exact={true} 
+                                updateDevices={this.updateDevices}
+                            />
                             <AuthorizedRouteWithContext path="/create-device" component={CreateDevice} exact={true} allowedRoles={'admin'}/>
                             <AuthorizedRouteWithContext path="/edit/:deviceId" component={EditDevice} exact={true} allowedRoles={'admin'}/>
                             <Route path="/logout" component={Logout} exact={true}/>
@@ -80,6 +87,13 @@ class App extends Component {
                 </DeviceProvider>
             </Router>
         );
+    }
+    componentDidMount() {
+        toast.configure({
+            autoClose: 8000,
+            draggable: false,
+            //etc you get the idea
+          });
     }
 }
 

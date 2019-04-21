@@ -1,6 +1,7 @@
 import React from 'react';
 import DevicesService from "../services/devices-service";
 import { Redirect } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
     return class withDataFormDevice extends React.Component {
@@ -35,15 +36,19 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
             price,
            }
            const result = await withDataFormDevice.devicesService[serviceMethod](deviceObjForRequest, deviceId);
-
+           debugger;
            if(result.success) {
-               alert('Operation was successful');
+               if(serviceMethod === 'editDevice') {
+                   alert('successfully edited device')
+                   toast.success('Successfully edited device');
+               } else {
+                    toast.success('Successfully created device');
+               }
                this.setState({
                 submited: true
                })
            } else {
-               console.log('something went wrong', result);
-               alert(result.message)
+               toast.error(result.message);
            }
         } 
 

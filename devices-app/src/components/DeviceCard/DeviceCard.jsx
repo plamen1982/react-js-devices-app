@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { UserConsumer } from "../../context/user-context";
 import DevicesService from "../../services/devices-service";
+import { toast } from "react-toastify";
 class DeviceCard extends Component {
     constructor(props) {
         super(props);
@@ -93,11 +94,11 @@ class DeviceCard extends Component {
             const returnedDevice = await DeviceCard.devicesService.borrowDevice(deviceId);  
             if(returnedDevice.success) {
                 this.setState({ isBorrowed: true });
+                toast.success(returnedDevice.message)
                 await DeviceCard.devicesService.editDevice(this.state, deviceId)
             }  
         } catch(error) {
-            //TODO replace with toastr
-            alert(error);
+            toast.error(error.message);
         }
     }
 }

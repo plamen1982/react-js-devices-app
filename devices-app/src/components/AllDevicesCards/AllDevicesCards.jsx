@@ -2,30 +2,34 @@ import React from "react";
 import DeviceCard from "../DeviceCard/DeviceCard";
 import Loading from "../Loading/Loading";
 
-const AllDevicesCards = (props) =>  {
+class AllDevicesCards extends React.Component {
 
-    const { devices, isLoading } = props;
-
-    if(isLoading) {
-        return <Loading />;
-    }
-
-    if(!isLoading && !devices.length > 0) {
-        return(
-            <h1 className="jumbotron">No devices here yet :(</h1>
+    render() {
+        const { isLoading, devices, deleteDeviceById } = this.props;
+        let loading;
+        let loadingMessage;
+        if(isLoading) {
+             loading = <Loading />;
+        }
+        if(!isLoading && !devices.length > 0) {
+            loadingMessage = <h1 className="jumbotron">No devices here yet :(</h1>
+        }
+        return (
+            isLoading 
+                ? loading
+                : !isLoading && !devices.length > 0    
+                    ? loadingMessage
+                    : devices.map((device) => (
+                        <DeviceCard
+                            key={device.model}
+                            image={device.image}
+                            deviceId={device._id}
+                            deleteDeviceById={deleteDeviceById}
+                            {...device}
+                        />
+            ))
         );
     }
-
-    return (
-        devices.map((device) => (
-            <DeviceCard
-                key={device.model}
-                image={device.image}
-                deviceId={device._id}
-                {...device}
-            />
-        ))
-    );
 }
 
 export default AllDevicesCards;

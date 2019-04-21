@@ -317,10 +317,11 @@ router.delete('/delete/:id', authCheck, (req, res) => {
       .then((device) => {
         device
           .remove()
-          .then(() => {
+          .then((removedDevice) => {
             return res.status(200).json({
               success: true,
-              message: 'Device deleted successfully!'
+              message: 'Device deleted successfully!',
+              device: removedDevice
             })
           })
       })

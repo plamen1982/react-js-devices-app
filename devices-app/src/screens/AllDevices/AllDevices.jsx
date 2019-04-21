@@ -23,7 +23,7 @@ class AllDevices extends Component {
         event.preventDefault();
         const { currentDeviceForSearch, devices } = this.state;
         if(currentDeviceForSearch) {
-            let filteredDevices = devices.filter(device => device.model.toLowerCase().includes(currentDeviceForSearch.toLowerCase()));
+            const filteredDevices = devices.filter(device => device.model.toLowerCase().includes(currentDeviceForSearch.toLowerCase()));
             this.setState({
                 filteredDevices
             });
@@ -31,6 +31,23 @@ class AllDevices extends Component {
             this.setState({
                 filteredDevices: devices
             });
+        }
+    }
+
+    deleteDeviceById = async (deviceId) => {
+        const { devices } = this.state;
+        try {
+            const deletedDeviceFromDB = await AllDevices.devicesService.deleteDeviceById(deviceId);
+            const { device } = deletedDeviceFromDB.device;
+            const filteredDevices = devices.filter(device => device.model !== device.model);
+
+            this.setState({
+                isDeleted: true,
+                filteredDevices,
+                devices: filteredDevices
+            });
+        } catch(error) {
+            alert(error);
         }
     }
 
@@ -57,6 +74,7 @@ class AllDevices extends Component {
                 <AllDevicesCards 
                     devices={filteredDevices}
                     isLoading={isLoading}
+                    deleteDeviceById={this.deleteDeviceById}
                 />
             </div>
         </div>

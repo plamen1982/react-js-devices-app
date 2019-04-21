@@ -22,7 +22,8 @@ class DeviceCard extends Component {
 
     render() {
         const { image, model, description, deviceId, price, isBorrowed } = this.state;
-        const { user } = this.props;
+        const { user, deleteDeviceById } = this.props;
+        debugger;
             let isUser = [];
             let isAdmin = [];
             let isVisitor = true;
@@ -78,7 +79,7 @@ class DeviceCard extends Component {
                         ? null 
                         : (
                             isAdmin
-                            ? <button className="btn btn-danger float-right btn-sm" onClick={ () => this.deleteDeviceById(deviceId) } > Delete </button>
+                            ? <button className="btn btn-danger float-right btn-sm" onClick={() => deleteDeviceById(deviceId)}  > Delete </button>
                             : <Link className="btn btn-secondary float-right btn-sm" to={`/review/${deviceId}`}> Review </Link>
                         )
                     }
@@ -98,15 +99,6 @@ class DeviceCard extends Component {
         } catch(error) {
             //TODO replace with toastr
             alert(error);
-        }
-    }
-
-    deleteDeviceById = async (deviceId) => {
-        try {
-            await DeviceCard.devicesService.deleteDeviceById(deviceId);
-            this.setState({ isDeleted: true })
-        } catch(error) {
-            alert(error)
         }
     }
 }

@@ -3,13 +3,6 @@ import FormDevice from "../../components/FormDevice/FormDevice";
 import { withDataFromDeviceService } from "../../hocs/with-data-from-device-service";
 import DevicesService from "../../services/devices-service";
 class EditDevice extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            device: {},
-            deviceId: ''
-        }
-    }
 
     handleChange = ({ target }) => {
         const inputName = target.name;

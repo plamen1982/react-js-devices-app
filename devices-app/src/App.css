@@ -161,6 +161,13 @@ th {
     margin: 0 auto;
 }
 
+.search .search-device {
+    width: 90%;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+
 @media screen and (max-width: 800px){
     nav.navbar-menu a {
         width: 100%;       

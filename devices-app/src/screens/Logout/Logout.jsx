@@ -12,7 +12,7 @@ class Logout extends Component {
     }
 
     render() {
-        toast.success('Loged Out Successully.')
+        toast.success('Logged Out Successfully.')
         return <Redirect to="/" />;
     }
 }

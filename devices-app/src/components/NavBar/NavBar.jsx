@@ -8,12 +8,10 @@ class NavBar extends Component {
     }
 
     render() {
-        const { image, model, description, deviceId, price, isBorrowed } = this.state;
         const { user } = this.props;
         const { isLoggedIn, username } = user;
         const isUser = user.roles.includes('User');
         const isAdmin = user.roles.includes('Admin');
-        const isVisitor = !user.roles.includes('User')&&!user.roles.includes('Admin');
         return (
             <header>
                 <nav className="navbar-menu">

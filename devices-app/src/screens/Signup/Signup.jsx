@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AuthenticationService from "../../services/authentication-service";
 import { Redirect } from "react-router-dom";
 import { UserConsumer } from "../../context/user-context";
-// import { ToastContainer } from "react-toastr";
+import { toast } from "react-toastify";
 
 class Signup extends Component {
     state = {
@@ -18,41 +18,39 @@ class Signup extends Component {
 
     handleOnSubmit = (event) => {
         event.preventDefault();
-        const { email, username, password, confirmPassword, isSignedUp } = this.state;
+        const { email, username, password, confirmPassword } = this.state;
 
         if(password !== confirmPassword) {
+            toast.error('Password does not matched.')
+        } else {
+
+            const requestLoginObject = {
+                email,
+                username,
+                password,
+            };
+    
             this.setState({
-                error: "Password does not matched"
-            });
-            return;
-        }
-
-        const requestLoginObject = {
-            email,
-            username,
-            password,
-        };
-
-        this.setState({
-            error: ""
-        }, async () => {
-            try {
-                const credentials = await Signup.authService.signup(requestLoginObject);
-                console.log(credentials);
-                if(!credentials.success) {
-                    const errors = Object.values(credentials.errors).join('');
-
-                    throw new Error(errors);
-                } else {
-                    this.setState({
-                        isSignedUp: true
-                    })
+                error: ""
+            }, async () => {
+                try {
+                    const credentials = await Signup.authService.signup(requestLoginObject);
+                    if(!credentials.success) {
+                        if(credentials.errors) {
+                            toast.error(credentials.errors.email);
+                        }
+                        toast.error(credentials.message);
+                    } else {
+                        this.setState({
+                            isSignedUp: true
+                        })
+                    }
+    
+                } catch (error) {
+                    toast.error(error.message);
                 }
-
-            } catch (error) {
-                console.log(error);
-            }
-        });
+            });
+        }
     };
 
     handleOnChange = ({ target }) => {
@@ -62,15 +60,10 @@ class Signup extends Component {
     };
 
     render() {
-        const { email, username, password, confirmPassword, error, isSignedUp } = this.state;
-
-        if(error) {
-            return (
-                <div>{error}</div>
-            )
-        }
+        const { email, username, password, confirmPassword, isSignedUp } = this.state;
 
         if(isSignedUp) {
+            toast.success('You Register Successfully.')
             return <Redirect to="/login" />;
         }
 

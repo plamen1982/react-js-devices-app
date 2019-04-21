@@ -2,8 +2,8 @@ import React from "react";
 
 class FormDevice extends React.Component {
     render() {
-        const { titleForm, handleSumbit, handleChange,  buttonName } = this.props;
-        debugger;
+        const { titleForm, handleSumbit, handleChange,  buttonName, device } = this.props;
+        const { model, description, image, price, creator } = device;
         return (
             <div className="form-wrapper">
                 <h1>{titleForm}</h1>
@@ -15,6 +15,7 @@ class FormDevice extends React.Component {
                             name="model"
                             id="model"
                             placeholder="Enter Device model"
+                            value={model}
                         />
                     </div>
                     <div className="form-group">
@@ -24,6 +25,7 @@ class FormDevice extends React.Component {
                             name="description"
                             id="description"
                             placeholder="Enter Device description"
+                            value={description}
                         />
                     </div>
                     <div className="form-group">
@@ -33,6 +35,7 @@ class FormDevice extends React.Component {
                             name="image"
                             id="image"
                             placeholder="Enter Device image URL"
+                            value={image}
                         />
                     </div>
                     <div className="form-group">
@@ -41,6 +44,7 @@ class FormDevice extends React.Component {
                             type="text"
                             name="creator"
                             id="creator"
+                            value={creator}
                         />
                     </div>
                     <div className="form-group">
@@ -50,6 +54,7 @@ class FormDevice extends React.Component {
                             name="price"
                             id="price"
                             placeholder="Enter Device price"
+                            value={price}
                         />
                     </div>
                     <input type="submit" value={buttonName} />

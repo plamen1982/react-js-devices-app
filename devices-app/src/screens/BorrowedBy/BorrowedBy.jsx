@@ -34,9 +34,7 @@ class BorrowedBy extends Component {
             date: user.date,
             model: user.model
         });
-        debugger;
     }
-
 }
 
 export default BorrowedBy;

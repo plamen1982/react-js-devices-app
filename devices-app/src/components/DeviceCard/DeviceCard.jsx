@@ -95,7 +95,6 @@ class DeviceCard extends Component {
                 this.setState({ isBorrowed: true });
                 await DeviceCard.devicesService.editDevice(this.state, deviceId)
             }  
-            debugger;
         } catch(error) {
             //TODO replace with toastr
             alert(error);

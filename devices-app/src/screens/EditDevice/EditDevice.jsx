@@ -1,32 +1,45 @@
 import React from "react";
 import FormDevice from "../../components/FormDevice/FormDevice";
 import { withDataFromDeviceService } from "../../hocs/with-data-from-device-service";
+import DevicesService from "../../services/devices-service";
+class EditDevice extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            device: {},
+            deviceId: ''
+        }
+    }
 
-const EditDevice = (props) => {
-    const handleChange = ({ target }) => {
+    handleChange = ({ target }) => {
         const inputName = target.name;
         const inputValue = target.value;
 
-        props.onChange(inputName, inputValue);
-    };
+        this.props.onChange(inputName, inputValue);
+    }
 
-    const handleSumbit = (e) => {
-        debugger;
+    handleSumbit = (e) => {
         e.preventDefault();
-        const { match: { params: { deviceId } } } = props;
-        debugger;
-        props.onSubmit(deviceId);
-    };
+        const { match: { params: { deviceId } } } = this.props;
+        this.props.onSubmit(deviceId);
+    }
 
-    return (
-        <FormDevice 
-            handleChange={handleChange}
-            handleSumbit={handleSumbit}
-            titleForm="Edit Device"
-            buttonName="Edit"
+    static devicesService = new DevicesService();
 
-        />
-    );
+    render() {
+        const { model, description, image, price, creator } = this.props;
+        const device = { model, description, image, price, creator };
+
+        return (
+            <FormDevice 
+                handleChange={this.handleChange}
+                handleSumbit={this.handleSumbit}
+                titleForm="Edit Device"
+                buttonName="Edit"
+                device={device}
+            />
+        );
+    }
 }
 
 export default withDataFromDeviceService('editDevice')(EditDevice);

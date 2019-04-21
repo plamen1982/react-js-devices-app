@@ -47,8 +47,7 @@ class MyDevices extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
-            
+            </div>  
         );
     }
 
@@ -68,7 +67,6 @@ class MyDevices extends Component {
 
  removeDeviceById = async (deviceId) => {
      try{
-         debugger;
         await MyDevices.devicesService.returnDeviceById(deviceId);
         this.setState({
             isRedirect: true
@@ -77,7 +75,6 @@ class MyDevices extends Component {
         alert(error);
      }
  }
-
 }
 
 export default MyDevices;

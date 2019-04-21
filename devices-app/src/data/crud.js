@@ -7,7 +7,6 @@
 const requester = method => {
     const getAuthHeader = () => {
         const token = window.localStorage.getItem("auth_token");
-        debugger;
         return (token && token.length) 
                 ? { "Authorization": `Bearer ${token}` }
                 : {}

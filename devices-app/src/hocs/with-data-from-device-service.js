@@ -14,28 +14,27 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
                 price: "" 
             }
         }
-
         
         static devicesService = new DevicesService();
 
-        handleChange = (name, value) => {
+        handleChange = (inputFieldName, inputFieldValue) => {
             this.setState(() => (
-               {[name]: value}
+               { [inputFieldName]: inputFieldValue }
             ))
+            debugger;
         }
 
-
-
         handleSubmit = async (deviceId) => {
-           debugger;
+            debugger;
            const { model, description, image, creator, price } = this.state;
            const deviceObjForRequest = {
             model, 
             description, 
             image, 
             creator, 
-            price
+            price,
            }
+           debugger;
            const result = await withDataFormDevice.devicesService[serviceMethod](deviceObjForRequest, deviceId);
 
            if(result.success) {
@@ -62,6 +61,26 @@ const withDataFromDeviceService = (serviceMethod) => WrappedComponent => {
                     onSubmit = { this.handleSubmit } 
                 />
             )
+        }
+
+        async componentDidMount() {
+            if(serviceMethod === 'editDevice') {
+                try {
+                    const { match: { params: { deviceId } } } = this.props;
+                    const device = await withDataFormDevice.devicesService.getDeviceById(deviceId);
+                    const { model, description, image, creator, price } = device;
+
+                    this.setState({
+                        model, 
+                        description, 
+                        image, 
+                        creator, 
+                        price,
+                    });
+                } catch(error) {
+                    console.log(error);
+                }
+            }
         }
     }
 }

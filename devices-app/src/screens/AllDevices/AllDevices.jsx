@@ -5,8 +5,9 @@ import DevicesService from "../../services/devices-service";
 class AllDevices extends Component {
     state = {
         devices: [],
+        filteredDevices:[],
         isLoading: true,
-        currentDeviceForSearch: ""
+        currentDeviceForSearch: "",
     }
 
     static devicesService = new DevicesService();
@@ -20,17 +21,22 @@ class AllDevices extends Component {
 
     handleOnSearch = (event) => {
         event.preventDefault();
-        const { currentDeviceForSearch, devices } = this.state;
-        debugger;
-        let filtredDevices = devices.filter(device => device.model.toLowerCase().includes(currentDeviceForSearch.toLowerCase()));
-        this.setState({
-            devices: filtredDevices
-        });
+        const { currentDeviceForSearch, devices, filteredDevices } = this.state;
+        if(currentDeviceForSearch !== "") {
+            let filteredDevices = devices.filter(device => device.model.toLowerCase().includes(currentDeviceForSearch.toLowerCase()));
+            this.setState({
+                filteredDevices
+            });
+        } else {
+            this.setState({
+                filteredDevices: devices
+            });
+        }
     }
 
     render() {
         const { isLoading } = this.props;
-        const { devices } = this.state;
+        const { filteredDevices } = this.state;
         return(
             <div className="container">
             <div className="row">
@@ -49,7 +55,7 @@ class AllDevices extends Component {
             </div>
             <div className="row">
                 <AllDevicesCards 
-                    devices={devices}
+                    devices={filteredDevices}
                     isLoading={isLoading}
                 />
             </div>
@@ -59,7 +65,7 @@ class AllDevices extends Component {
     async componentDidMount() {
         try {
             const devices = await AllDevices.devicesService.getAllDevices();
-            this.setState({ devices, isLoading: false })
+            this.setState({ devices, isLoading: false, filteredDevices: devices })
         } catch(error) {
             this.setState({ error });
         }

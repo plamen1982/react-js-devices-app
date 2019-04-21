@@ -38,8 +38,8 @@ class AllDevices extends Component {
         const { devices } = this.state;
         try {
             const deletedDeviceFromDB = await AllDevices.devicesService.deleteDeviceById(deviceId);
-            const { device } = deletedDeviceFromDB.device;
-            const filteredDevices = devices.filter(device => device.model !== device.model);
+
+            const filteredDevices = devices.filter(device => device.model !== deletedDeviceFromDB.device.model);
 
             this.setState({
                 isDeleted: true,

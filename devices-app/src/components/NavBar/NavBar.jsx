@@ -41,7 +41,7 @@ class NavBar extends Component {
                     }
                     {
                         isLoggedIn
-                            ? <span className="text-danger">Hello, {username}! </span>
+                            ? <a href="#">Hello, {username}! </a>
                             : null
                     }
                 </nav>

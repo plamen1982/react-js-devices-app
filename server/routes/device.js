@@ -68,7 +68,7 @@ router.post('/create', authCheck, (req, res) => {
         console.log(err);
         let message = 'Something went wrong :( Check the form for errors.';
         if (err.code === 11000) {
-          message = 'Device with the given model already exists.';
+          message = 'Device with the given model name already exists.';
         }
         return res.status(200).json({
           success: false,
@@ -96,7 +96,7 @@ router.post('/edit/:id', authCheck, (req, res) => {
         errors: validationResult.errors
       })
     }
-    // TO DO double check all properties
+
     Device
       .findById(deviceId)
       .then(existingDevice => {
@@ -117,7 +117,6 @@ router.post('/edit/:id', authCheck, (req, res) => {
             })
           })
           .catch((err) => {
-            console.log(err)
             let message = 'Something went wrong :( Check the form for errors.';
             if (err.code === 11000) {
               message = 'Device with the given name already exists.';
@@ -129,7 +128,6 @@ router.post('/edit/:id', authCheck, (req, res) => {
           })
       })
       .catch((err) => {
-        console.log(err);
         const message = 'Something went wrong :( Check the form for errors.';
         return res.status(200).json({
           success: false,

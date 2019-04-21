@@ -57,7 +57,7 @@ class DeviceCard extends Component {
                     <small className="text-muted" />
                     {
                         isVisitor&&isBorrowed
-                            ? <Link className="btn btn-primary float-right btn-sm" to={`borrowedBy/${deviceId}`}> This device is borrowed by: </Link>
+                            ? <Link className="btn btn-primary float-right btn-sm" to={`borrowedBy/${deviceId}`}> See who borrow this device </Link>
                             : (
                                 isVisitor
                                 ? <Link className="btn btn-warning float-right btn-sm" to={"login"}> Login to borrow this device </Link>
@@ -66,7 +66,7 @@ class DeviceCard extends Component {
                                     ? <Link className="btn btn-warning float-right btn-sm" to={`/edit/${deviceId}`}> Edit </Link>
                                     : (
                                         isUser&&isBorrowed
-                                        ? <Link className="btn btn-primary float-right btn-sm" to={`borrowedBy/${deviceId}`} > This device is borrowed by: </Link>
+                                        ? <Link className="btn btn-primary float-right btn-sm" to={`borrowedBy/${deviceId}`} > See who borrow this device </Link>
                                         : <button className="btn btn-primary float-right btn-sm" onClick={() => this.borrowDeviceById(deviceId)}> Borrow </button>
                                     )
 
@@ -80,7 +80,8 @@ class DeviceCard extends Component {
                         : (
                             isAdmin
                             ? <button className="btn btn-danger float-right btn-sm" onClick={() => deleteDeviceById(deviceId)}  > Delete </button>
-                            : <Link className="btn btn-secondary float-right btn-sm" to={`/review/${deviceId}`}> Review </Link>
+                            : null
+                            // : <Link className="btn btn-secondary float-right btn-sm" to={`/review/${deviceId}`}> Review </Link>
                         )
                     }
 

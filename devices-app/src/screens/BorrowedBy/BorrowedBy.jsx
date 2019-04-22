@@ -14,11 +14,19 @@ class BorrowedBy extends Component {
     render() {
         const { username, date, model } = this.state; 
         return (
-            <div className="jumbotron col-centered">
-                <h4>This device: <p className="font-weight-bold">{model}</p></h4>
-                <h4>Is borrowed by username: <p className="font-weight-bold">{username}</p></h4>
-                <h4>On date: <p className="font-weight-bold">{date}</p></h4>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="jumbotron col-centered text-center">
+                            <h4>This device: <p className="font-weight-bold">{model}</p></h4>
+                            <h4>Is borrowed by username: <p className="font-weight-bold">{username}</p></h4>
+                            <h4>On date: <p className="font-weight-bold">{date}</p></h4>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
         );
     }
 

@@ -29,7 +29,6 @@ class Login extends Component {
         }, async () => {
             try {
                 const credentials = await Login.authService.login(requestLoginObject);
-                console.log("Token", credentials.token);
                 if(!credentials.success) {
                     const errors = Object.values(credentials.errors).join('');
 

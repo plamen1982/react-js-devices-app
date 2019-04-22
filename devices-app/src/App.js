@@ -18,7 +18,6 @@ import NavBarWithConsumer from "../src/components/NavBar/NavBar";
 import AuthorizedRouteWithContext from "../src/components/AuthorizedRoute/AuthorizedRoute";
 
 import { UserProvider, defaultUserState } from "./context/user-context";
-import { DeviceProvider } from "./context/device-context";
 
 import BorrowedBy from "./screens/BorrowedBy/BorrowedBy";
 import { ToastContainer, toast } from 'react-toastify';
@@ -47,11 +46,7 @@ class App extends Component {
     }
     
     render() {
-        const { user, devices } = this.state;
-        const contextForDevices = {
-            updateDevices: this.updateDevices,             
-            devices
-        }
+        const { user } = this.state;
 
         const contextForLogin = {
             updateUser: this.updateUser, 
@@ -60,30 +55,28 @@ class App extends Component {
 
         return (
             <Router>
-                <DeviceProvider value={contextForDevices}>
-                    <UserProvider value={contextForLogin}>
-                        <NavBarWithConsumer />
-                        <ToastContainer autoClose={3000}/>
-                        <Switch>
-                            <Route path="/" component={Home} exact={true} />
-                            <Route path="/login" component={LoginWithContext} exact={true} />
-                            <Route path="/signup" component={Signup} exact={true} />
-                            <Route path="/my-devices" component={MyDevices} exact={true} />
-                            <Route 
-                                path="/all-devices" 
-                                component={AllDevices} 
-                                exact={true} 
-                                updateDevices={this.updateDevices}
-                            />
-                            <AuthorizedRouteWithContext path="/create-device" component={CreateDevice} exact={true} allowedRoles={'admin'}/>
-                            <AuthorizedRouteWithContext path="/edit/:deviceId" component={EditDevice} exact={true} allowedRoles={'admin'}/>
-                            <Route path="/logout" component={Logout} exact={true}/>
-                            <Route path="/review/:deviceId" component={DetailsDevice} exact={true} />
-                            <Route path="/borrowedBy/:deviceId" component={BorrowedBy} />
-                            <Route component={NotFound} />
-                        </Switch>
-                    </UserProvider>
-                </DeviceProvider>
+                <UserProvider value={contextForLogin}>
+                    <NavBarWithConsumer />
+                    <ToastContainer autoClose={3000}/>
+                    <Switch>
+                        <Route path="/" component={Home} exact={true} />
+                        <Route path="/login" component={LoginWithContext} exact={true} />
+                        <Route path="/signup" component={Signup} exact={true} />
+                        <Route path="/my-devices" component={MyDevices} exact={true} />
+                        <Route 
+                            path="/all-devices" 
+                            component={AllDevices} 
+                            exact={true} 
+                            updateDevices={this.updateDevices}
+                        />
+                        <AuthorizedRouteWithContext path="/create-device" component={CreateDevice} exact={true} allowedRoles={'admin'}/>
+                        <AuthorizedRouteWithContext path="/edit/:deviceId" component={EditDevice} exact={true} allowedRoles={'admin'}/>
+                        <Route path="/logout" component={Logout} exact={true}/>
+                        <Route path="/review/:deviceId" component={DetailsDevice} exact={true}/>
+                        <Route path="/borrowedBy/:deviceId" component={BorrowedBy}/>
+                        <Route component={NotFound} />
+                    </Switch>
+                </UserProvider>
             </Router>
         );
     }
